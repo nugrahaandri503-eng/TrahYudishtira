@@ -203,11 +203,39 @@
     </div>
 
     <script>
+     <script>
         const dailyWords = ["yang", "dan", "di", "ke", "dari", "ini", "itu", "untuk", "pada", "dengan", "adalah", "sebagai", "tidak", "bisa", "akan", "tapi", "karena", "kalau", "sudah", "lagi", "lebih", "sangat", "paling", "hanya", "juga", "atau", "saat", "lalu", "biar", "terus", "sambil", "memang", "cepat", "lambat", "baik", "buruk", "baru", "lama", "jauh", "dekat", "mudah", "susah", "banyak", "sedikit", "besar", "kecil", "bagus", "keren", "santai", "sibuk", "makan", "minum", "tidur", "pergi", "pulang", "jalan", "lari", "bikin", "buat", "pakai", "ambil", "kasih", "bawa", "cari", "dapat", "coba", "mulai", "selesai", "paham", "ngerti", "suka", "benci", "mau", "ingin", "jangan", "mari", "ayo", "tolong", "maaf", "terima", "sama", "beda", "benar", "salah", "mungkin", "pasti", "selalu", "kadang", "belum", "sekarang", "nanti", "besok", "kemarin", "hari", "malam", "pagi", "sore", "iya", "enggak", "oke", "sip", "dong", "deh", "nih", "tuh", "kan", "kok", "sih", "aja", "banget", "lumayan", "biasa", "luar", "dalam", "atas", "bawah", "depan", "kiri", "kanan", "sini", "situ", "sana", "mana", "apa", "siapa", "mengapa", "kenapa", "gimana", "kapan", "berapa"];
-        const utbkWords = ["apotek", "analisis", "sistem", "hierarki", "hakikat", "konkret", "kuitansi", "praktik", "risiko", "saksama", "telantar", "terampil", "memengaruhi", "mengubah", "jadwal", "kualitas", "kuantitas", "antre", "asas", "bus", "cabai", "daftar", "ekstrem", "februari", "frekuensi", "gladi", "gua", "himbau", "ijazah", "izin", "karier", "kategori", "komoditas", "lubang", "makhluk", "miliar", "napas", "narasumber", "objek", "provinsi", "rezeki", "roboh", "sah", "saraf", "sekadar", "silakan", "standardisasi", "survei", "takhayul", "tampak", "teladan", "ubah", "kedaluwarsa", "memesona", "mencolok", "nasihat", "sedangkan", "melainkan", "karena", "sehingga", "meskipun", "walaupun", "apabila", "jika", "namun", "tetapi", "bahwa", "serta", "kemudian", "lalu", "melalui", "dengan", "daripada", "objektif", "subjektif", "signifikan", "kritis", "relevan", "esensial", "komprehensif", "fluktuatif", "statis", "dinamis", "kualitatif", "kuantitatif", "empiris", "teoretis", "hipotesis"];
-        const ktiPerkapalan = ["Penelitian ini mengkaji pengaruh modifikasi bentuk haluan terhadap nilai hambatan total kapal menggunakan pendekatan metode elemen hingga.", "Desain lines plan merupakan langkah krusial sebelum melanjutkan pemodelan lambung di perangkat lunak terintegrasi.", "Hasil perhitungan hidrostatika kapal memberikan gambaran komprehensif mengenai karakteristik displacement dan titik apung.", "Analisis kekuatan memanjang pada struktur lambung kapal dikalkulasi dengan mempertimbangkan momen lentur kritis.", "Evaluasi stabilitas intak pada kapal niaga dilakukan secara ketat berdasarkan kriteria standar regulasi internasional.", "Simulasi aliran fluida berbasis dinamika komputasi diaplikasikan guna memprediksi efisiensi kinerja propeller di perairan dangkal.", "Fungsi redaman pada model matematika stabilitas kapal sering direpresentasikan oleh eksponensial e pangkat negatif dikali t secara linier.", "Penerapan material komposit berserat bertujuan untuk meminimalisasi berat keseluruhan tanpa mengorbankan integritas struktur.", "Distribusi tegangan pada sekat tubrukan dievaluasi berkala guna mengantisipasi kegagalan lelah akibat beban siklis.", "Penerapan teknologi pintar pada ruang mesin bertujuan mendeteksi anomali kebocoran secara otomatis dan presisi.", "Perhitungan perubahan sarat haluan dan buritan akibat penambahan bobot muatan dianalisis menggunakan prinsip keseimbangan hidrostatika.", "Validasi komputasi hidrodinamika dilakukan melalui komparasi langsung dengan data empiris pengujian tangki tarik.", "Simulasi distribusi suhu dan tekanan pada tangki penyimpanan diselesaikan menggunakan metode komputasi termodinamika terapan."];
-        const ktiKomunikasi = ["Penelitian ini menerapkan metode analisis wacana kritis guna membongkar konstruksi representasi gender media daring.", "Efektivitas kampanye literasi digital diukur melalui perubahan tingkat kognisi dan perilaku bermedia sosial secara bijak.", "Pendekatan fenomenologi kualitatif digunakan untuk mengeksplorasi pengalaman subjektif adaptasi lingkungan multikultural.", "Strategi hubungan masyarakat yang diterapkan instansi pemerintah dievaluasi berdasarkan sentimen publik di platform media sosial.", "Kajian semiotika dilakukan terhadap elemen visual dan tekstual iklan guna memahami ideologi tersembunyi yang ditransmisikan.", "Dinamika komunikasi kelompok dalam ruang diskusi virtual memengaruhi proses pengambilan keputusan secara kolektif.", "Penelitian ini membuktikan adanya hubungan yang berbanding terbalik antara intensitas terpaan berita palsu dengan kepercayaan publik.", "Konvergensi media menuntut jurnalis untuk memiliki kompetensi ganda dalam menyajikan laporan secara komprehensif.", "Pergeseran paradigma dari komunikasi satu arah menjadi interaktif secara fundamental telah mengubah pola konsumsi budaya populer.", "Hipotesis utama dalam studi ini berasumsi bahwa paparan kekerasan televisi berkorelasi positif terhadap agresivitas verbal.", "Konstruksi realitas politik menjelang pemilihan umum dibingkai secara sistematis oleh redaksi melalui pemilihan diksi tendensius.", "Hegemoni budaya dalam industri pertelevisian dianalisis menggunakan kerangka teori ekonomi politik media dari perspektif kritis."];
 
+        // 1. Kosakata Baku UTBK Level "Dewa" yang baru
+        const utbkWords = [
+            "andal", "antre", "asas", "autisme", "balsam", "batalion", "baterai", "bolpoin", "bujur", 
+            "cenderamata", "cengkeram", "detail", "diagnosis", "diperbarui", "ekstrem", "elite", "embus", 
+            "fondasi", "frekuensi", "genius", "gua", "gubuk", "haktul", "hafal", "hierarki", "higienis", 
+            "imbau", "indra", "isap", "istri", "jadwal", "jenazah", "jenderal", "kacamata", "karier", 
+            "kategori", "khatulistiwa", "khawatir", "kiai", "kualitas", "kuitansi", "legenda", "lembap", 
+            "lubang", "maaf", "makhluk", "manajemen", "mangkuk", "mantra", "massal", "memercayai", 
+            "memesona", "memopulerkan", "mengubah", "menyukseskan", "miliar", "misi", "mosaik", 
+            "napas", "narasumber", "nasihat", "objek", "omzet", "paham", "pascapanen", "peka", 
+            "pembaruan", "penasihat", "pertanggungjawaban", "piawai", "praktik", "provinsi", "putra", 
+            "ramai", "rapor", "relaksasi", "respons", "risiko", "roboh", "saksama", "samudra", 
+            "sanksi", "saraf", "sekadar", "sekretaris", "silakan", "sistem", "sportif", "standardisasi", 
+            "subjek", "survei", "sutradara", "tampak", "tauladan", "telantar", "terampil", "ubah", 
+            "utang", "wujud", "zaman", "zamrud", "kedaluwarsa", "mencolok", "memunafikkan"
+        ];
+
+        // 2. Variabel kosong untuk menampung data dari JSON berdasarkan tema
+        let ktiPerkapalan = [];
+        let ktiKomunikasi = [];
+
+        // 3. Fungsi Fetch untuk menarik referensi KTI dari file json
+        fetch('kti-data.json')
+            .then(response => response.json())
+            .then(data => {
+                if(data.perkapalan) ktiPerkapalan = data.perkapalan;
+                if(data.komunikasi) ktiKomunikasi = data.komunikasi;
+                console.log("Data referensi KTI berhasil ditarik!");
+            })
+            .catch(error => console.error("Gagal mengambil data JSON:", error));
         function shuffleArray(array) {
             let shuffled = array.slice(); 
             let currentIndex = shuffled.length, randomIndex;
