@@ -200,18 +200,39 @@
             "utang", "wujud", "zaman", "zamrud", "kedaluwarsa", "mencolok", "memunafikkan"
         ];
 
-        let ktiPerkapalan = [];
-        let ktiKomunikasi = [];
+        // DATA CADANGAN LOKAL (Website langsung bisa jalan tanpa menunggu file JSON eksternal)
+        let ktiPerkapalan = [
+            "Penelitian ini mengkaji pengaruh modifikasi bentuk haluan terhadap nilai hambatan total kapal menggunakan metode Computational Fluid Dynamics pada berbagai variasi sarat air.",
+            "Desain lines plan merupakan langkah paling krusial sebelum melanjutkan proses pemodelan lambung 3D di perangkat lunak Maxsurf.",
+            "Perhitungan perubahan sarat haluan dan buritan akibat penambahan bobot muatan dianalisis secara akurat menggunakan prinsip keseimbangan hidrostatika dasar.",
+            "Fungsi redaman pada model matematika stabilitas kapal sering direpresentasikan oleh eksponensial e pangkat negatif dikali t dalam penyelesaian persamaan diferensialnya.",
+            "Penerapan teknologi smart bilge system pada ruang mesin dirancang untuk memitigasi risiko kebocoran dengan tingkat akurasi sensor mendeteksi anomali secara otomatis.",
+            "Distribusi tegangan pada sekat tubrukan dievaluasi secara berkala guna mengantisipasi kegagalan lelah material akibat beban siklis gelombang laut.",
+            "Validasi komputasi hidrodinamika dilakukan melalui komparasi langsung dengan data empiris yang diperoleh dari serangkaian pengujian di tangki tarik.",
+            "Simulasi aliran fluida berbasis dinamika komputasi diaplikasikan guna memprediksi efisiensi kinerja propeller di wilayah perairan dangkal."
+        ];
 
-        // JURUS CACHE BUSTER: Menambahkan kode waktu agar browser selalu memuat JSON paling baru
+        let ktiKomunikasi = [
+            "Penelitian ini menerapkan metode analisis wacana kritis guna membongkar konstruksi representasi gender dalam pemberitaan media massa daring.",
+            "Efektivitas kampanye literasi digital diukur melalui perubahan tingkat kognisi dan perilaku bermedia sosial secara bijak pada kalangan remaja.",
+            "Dinamika komunikasi kelompok dalam ruang diskusi virtual memengaruhi proses pengambilan keputusan secara kolektif di era disrupsi informasi.",
+            "Kajian semiotika dilakukan terhadap elemen visual dan tekstual iklan komersial guna memahami ideologi tersembunyi yang ditransmisikan kepada audiens."
+        ];
+
+        // Mencoba memuat data JSON eksternal jika tersedia
         fetch('kti-data.json?v=' + new Date().getTime())
-            .then(response => response.json())
-            .then(data => {
-                if(data.perkapalan) ktiPerkapalan = data.perkapalan;
-                if(data.komunikasi) ktiKomunikasi = data.komunikasi;
-                console.log("Data referensi KTI berhasil ditarik!");
+            .then(response => {
+                if (!response.ok) throw new Error('File eksternal tidak ditemukan');
+                return response.json();
             })
-            .catch(error => console.error("Gagal mengambil data JSON:", error));
+            .then(data => {
+                if(data.perkapalan && data.perkapalan.length > 0) ktiPerkapalan = data.perkapalan;
+                if(data.komunikasi && data.komunikasi.length > 0) ktiKomunikasi = data.komunikasi;
+                console.log("Data referensi KTI dari JSON berhasil dimuat!");
+            })
+            .catch(error => {
+                console.log("Menggunakan database lokal bawaan karena:", error.message);
+            });
 
         function shuffleArray(array) {
             let shuffled = array.slice(); 
@@ -321,17 +342,9 @@
             } else {
                 let sentenceSource = (currentTheme === 'perkapalan') ? ktiPerkapalan : ktiKomunikasi;
                 
-                // JARING PENGAMAN: Mencegah Layar Hang Jika Data Belum Terbaca
-                if (sentenceSource.length === 0) {
-                    alert("Data KTI belum masuk! Pastikan file 'kti-data.json' sudah benar. Klik OK untuk kembali ke menu.");
-                    returnToMenu();
-                    return; 
-                }
-
                 let randomizedSentences = shuffleArray(sentenceSource);
                 let neededSentences = (currentMode === 4) ? 30 : 10; 
                 
-                // REM DARURAT: Memastikan tidak ada infinite loop
                 let loopCount = 0;
                 while(randomizedSentences.length < neededSentences && loopCount < 50) {
                     randomizedSentences = randomizedSentences.concat(shuffleArray(sentenceSource));
@@ -366,6 +379,7 @@
 
         function processNextWord(typedText) {
             const currentWordEl = wordEls[currentWordIndex];
+            if (!currentWordEl) return;
             const letterEls = currentWordEl.querySelectorAll('.letter');
             
             letterEls.forEach((letterEl, index) => {
