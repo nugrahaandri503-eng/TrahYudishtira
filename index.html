@@ -205,7 +205,6 @@
     <script>
         const dailyWords = ["yang", "dan", "di", "ke", "dari", "ini", "itu", "untuk", "pada", "dengan", "adalah", "sebagai", "tidak", "bisa", "akan", "tapi", "karena", "kalau", "sudah", "lagi", "lebih", "sangat", "paling", "hanya", "juga", "atau", "saat", "lalu", "biar", "terus", "sambil", "memang", "cepat", "lambat", "baik", "buruk", "baru", "lama", "jauh", "dekat", "mudah", "susah", "banyak", "sedikit", "besar", "kecil", "bagus", "keren", "santai", "sibuk", "makan", "minum", "tidur", "pergi", "pulang", "jalan", "lari", "bikin", "buat", "pakai", "ambil", "kasih", "bawa", "cari", "dapat", "coba", "mulai", "selesai", "paham", "ngerti", "suka", "benci", "mau", "ingin", "jangan", "mari", "ayo", "tolong", "maaf", "terima", "sama", "beda", "benar", "salah", "mungkin", "pasti", "selalu", "kadang", "belum", "sekarang", "nanti", "besok", "kemarin", "hari", "malam", "pagi", "sore", "iya", "enggak", "oke", "sip", "dong", "deh", "nih", "tuh", "kan", "kok", "sih", "aja", "banget", "lumayan", "biasa", "luar", "dalam", "atas", "bawah", "depan", "kiri", "kanan", "sini", "situ", "sana", "mana", "apa", "siapa", "mengapa", "kenapa", "gimana", "kapan", "berapa"];
 
-        // 1. Kosakata Baku UTBK Level "Dewa" yang baru
         const utbkWords = [
             "andal", "antre", "asas", "autisme", "balsam", "batalion", "baterai", "bolpoin", "bujur", 
             "cenderamata", "cengkeram", "detail", "diagnosis", "diperbarui", "ekstrem", "elite", "embus", 
@@ -222,11 +221,9 @@
             "utang", "wujud", "zaman", "zamrud", "kedaluwarsa", "mencolok", "memunafikkan"
         ];
 
-        // 2. Variabel kosong untuk menampung data dari JSON berdasarkan tema
         let ktiPerkapalan = [];
         let ktiKomunikasi = [];
 
-        // 3. Fungsi Fetch untuk menarik referensi KTI dari file json
         fetch('kti-data.json')
             .then(response => response.json())
             .then(data => {
@@ -235,6 +232,7 @@
                 console.log("Data referensi KTI berhasil ditarik!");
             })
             .catch(error => console.error("Gagal mengambil data JSON:", error));
+
         function shuffleArray(array) {
             let shuffled = array.slice(); 
             let currentIndex = shuffled.length, randomIndex;
@@ -264,7 +262,6 @@
         const timeDisplayWrapper = document.getElementById('time-display-wrapper');
         const finishBtn = document.getElementById('finish-btn');
 
-        // Navigasi History untuk mencegah force close dan memanajemen tombol back HP
         window.history.pushState({ page: "menu" }, "", "");
         window.addEventListener('popstate', function(event) {
             if (!menuContainer.classList.contains('hidden')) {
@@ -335,21 +332,30 @@
 
             let textArray = [];
 
-            // SOLUSI RAM: Batasi panjang array agar tidak crash di Safari iOS
             if (currentMode === 1) {
                 let randomizedWords = shuffleArray(dailyWords);
-                // Dikurangi dari 200 menjadi 80 kata untuk memori aman
                 textArray = randomizedWords.slice(0, 80);
             } else if (currentMode === 2) {
                 let randomizedWords = shuffleArray(utbkWords);
                 textArray = randomizedWords.slice(0, 80);
             } else {
-                let sentenceSource = (currentTheme === 'perkapalan') ? ktiPerkapalan : ktiKomunikasi;             
+                let sentenceSource = (currentTheme === 'perkapalan') ? ktiPerkapalan : ktiKomunikasi;
+                
+                // JARING PENGAMAN 1: Mencegah Layar Nge-Freeze karena data kosong
+                if (sentenceSource.length === 0) {
+                    alert("Data referensi KTI belum termuat. Silakan klik OK dan coba pilih mode ini lagi!");
+                    returnToMenu();
+                    return; 
+                }
+
                 let randomizedSentences = shuffleArray(sentenceSource);
-                // Mengurangi dari 100 kalimat menjadi 30 kalimat maksimal agar RAM iPhone tidak kolaps
                 let neededSentences = (currentMode === 4) ? 30 : 10; 
-                while(randomizedSentences.length < neededSentences) {
+                
+                // JARING PENGAMAN 2: Anti Infinite Loop
+                let loopCount = 0;
+                while(randomizedSentences.length < neededSentences && loopCount < 50) {
                     randomizedSentences = randomizedSentences.concat(shuffleArray(sentenceSource));
+                    loopCount++;
                 }
                 textArray = randomizedSentences.slice(0, neededSentences).join(" ").trim().split(" ");
             }
@@ -513,7 +519,6 @@
             resultContainer.classList.remove('hidden');
         }
 
-        // Tombol interaksi
         document.getElementById('back-to-menu-btn').addEventListener('click', returnToMenu);
         document.getElementById('back-menu-btn').addEventListener('click', returnToMenu);
         document.getElementById('mid-restart-btn').addEventListener('click', restartCurrentSession);
