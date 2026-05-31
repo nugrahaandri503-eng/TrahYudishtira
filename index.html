@@ -12,64 +12,50 @@
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; margin: 0; overflow: hidden; 
         }
-
         .container {
             background: #1e1e1e; padding: 30px; border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.9); width: 95%; max-width: 850px; 
             box-sizing: border-box; max-height: 100vh; overflow-y: auto;
         }
-
         .menu-header { text-align: center; margin-bottom: 25px; }
         .menu-header h1 { color: #4facfe; font-size: 2rem; margin-bottom: 5px; margin-top: 0; }
         .menu-header p { color: #aaa; font-size: 0.9rem; }
-        
         .btn-grid { display: flex; flex-direction: column; gap: 10px; }
-
         .menu-btn {
             background: #2a2a2a; border: 2px solid #4facfe; color: white;
             padding: 15px; border-radius: 10px; font-size: 1.1rem; text-align: left;
             cursor: pointer; transition: 0.3s; display: flex; flex-direction: column;
         }
-
         .menu-btn:hover { background: rgba(79, 172, 254, 0.1); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3); }
         .menu-btn strong { font-size: 1.1rem; color: #00f2fe; margin-bottom: 5px; }
         .menu-btn span { font-size: 0.85rem; color: #aaa; font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.4; }
-
         .theme-btn { border-color: #2ed573; }
         .theme-btn strong { color: #2ed573; }
         .theme-btn:hover { background: rgba(46, 213, 115, 0.1); box-shadow: 0 5px 15px rgba(46, 213, 115, 0.3); }
-
         .stats { display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; color: #aaaaaa; margin-bottom: 15px; font-weight: bold; }
         #time-display-text { color: #ff4757; font-size: 1.5rem; }
-
         .top-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
-
         .control-btn {
             background: #333; color: white; border: none; padding: 8px 12px;
             border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s;
             display: flex; justify-content: center; align-items: center; font-size: 1rem;
         }
         .control-btn:hover { background: #555; }
-        
         #finish-btn { background: #ff4757; display: none; }
         #finish-btn:hover { background: #ff6b81; }
-        
         #mid-restart-btn { padding: 8px; border-radius: 50%; width: 38px; height: 38px; }
         #mid-restart-btn:hover { background: #4facfe; transform: rotate(180deg); }
-
         #word-display {
             font-size: 1.5rem; line-height: 1.5; color: #555555; 
             display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px 12px;
             height: 110px; overflow-y: hidden; margin-bottom: 20px; user-select: none;
             padding: 5px; scroll-behavior: smooth; 
         }
-
         .word { display: inline-flex; transition: 0.1s; border-bottom: 3px solid transparent; }
         .word.active { border-bottom: 3px solid #4facfe; text-shadow: 0 0 8px rgba(255,255,255,0.3); }
         .letter { transition: 0.1s; }
         .letter.correct { color: #2ed573; } 
         .letter.incorrect { color: #ff4757; background-color: rgba(255, 71, 87, 0.2); border-radius: 3px; }
-
         input {
             width: 100%; padding: 15px; font-size: 1.2rem; text-align: center;
             border: 2px solid #333; border-radius: 8px; background: #2a2a2a; color: #ffffff; 
@@ -77,36 +63,29 @@
         }
         input:focus { border-color: #4facfe; }
         .hidden { display: none !important; }
-
         .result-box { text-align: center; }
         .result-box h2 { font-size: 2rem; color: #ff4757; margin-top: 0; }
         .wpm-score { font-size: 3.5rem; font-weight: bold; color: #4facfe; margin: 5px 0; }
-        
         .stats-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
             background: #2a2a2a; padding: 15px; border-radius: 10px; margin-bottom: 15px; text-align: left;
         }
         .stats-grid div { font-size: 0.9rem; color: #ccc; display: flex; flex-direction: column; border-bottom: 1px solid #444; padding-bottom: 5px; }
         .stats-grid span { font-weight: bold; font-size: 1.1rem; margin-top: 5px; }
-
         .wrong-words-box {
             background: rgba(255, 71, 87, 0.1); border: 1px solid #ff4757; border-radius: 8px;
             padding: 12px; margin-bottom: 20px; text-align: left; max-height: 80px; overflow-y: auto; font-size: 0.9rem; color: #ffaaab;
         }
         .wrong-words-title { color: #ff4757; font-weight: bold; margin-bottom: 5px; display: block; }
-
         .text-green { color: #2ed573; } .text-red { color: #ff4757; } .text-blue { color: #4facfe; } 
         .text-white { color: #ffffff; } .text-yellow { color: #f1c40f; }
-        
         .btn-group { display: flex; flex-direction: column; gap: 10px; }
-        
         button.main-btn {
             padding: 12px; font-size: 1.1rem; background: linear-gradient(to right, #4facfe, #00f2fe);
             color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s; width: 100%;
         }
         button.main-btn:hover { box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4); }
         button.secondary-btn { background: #333; color: white; }
-
         @media (max-width: 600px) {
             .container { padding: 20px 15px; }
             .menu-btn strong { font-size: 1rem; }
@@ -224,7 +203,8 @@
         let ktiPerkapalan = [];
         let ktiKomunikasi = [];
 
-        fetch('kti-data.json')
+        // JURUS CACHE BUSTER: Menambahkan kode waktu agar browser selalu memuat JSON paling baru
+        fetch('kti-data.json?v=' + new Date().getTime())
             .then(response => response.json())
             .then(data => {
                 if(data.perkapalan) ktiPerkapalan = data.perkapalan;
@@ -341,9 +321,9 @@
             } else {
                 let sentenceSource = (currentTheme === 'perkapalan') ? ktiPerkapalan : ktiKomunikasi;
                 
-                // JARING PENGAMAN 1: Mencegah Layar Nge-Freeze karena data kosong
+                // JARING PENGAMAN: Mencegah Layar Hang Jika Data Belum Terbaca
                 if (sentenceSource.length === 0) {
-                    alert("Data referensi KTI belum termuat. Silakan klik OK dan coba pilih mode ini lagi!");
+                    alert("Data KTI belum masuk! Pastikan file 'kti-data.json' sudah benar. Klik OK untuk kembali ke menu.");
                     returnToMenu();
                     return; 
                 }
@@ -351,7 +331,7 @@
                 let randomizedSentences = shuffleArray(sentenceSource);
                 let neededSentences = (currentMode === 4) ? 30 : 10; 
                 
-                // JARING PENGAMAN 2: Anti Infinite Loop
+                // REM DARURAT: Memastikan tidak ada infinite loop
                 let loopCount = 0;
                 while(randomizedSentences.length < neededSentences && loopCount < 50) {
                     randomizedSentences = randomizedSentences.concat(shuffleArray(sentenceSource));
