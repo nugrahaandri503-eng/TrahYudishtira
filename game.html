@@ -29,6 +29,8 @@
         ::-webkit-scrollbar { display: none; } * { -ms-overflow-style: none; scrollbar-width: none; }
 
         body { background-color: var(--bg-main); background-image: radial-gradient(var(--bg-dot) 1px, transparent 1px); background-size: 24px 24px; color: var(--text-main); font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; transition: background-color 0.4s ease, background-image 0.4s ease; }
+        
+        /* Container dibuat lebih lebar untuk menampung sidebar */
         .container { background: var(--container-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); padding: 40px 35px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); width: 95%; max-width: 1100px; box-sizing: border-box; max-height: 100vh; overflow-y: auto; transition: all 0.4s ease; position: relative; }
 
         .menu-header { text-align: center; margin-bottom: 25px; }
@@ -56,8 +58,10 @@
         
         .falling-word { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 15px; background: var(--bg-main); border: 2px solid var(--border-strong); border-radius: 12px; font-family: 'Consolas', monospace; font-size: 1.15rem; font-weight: 600; color: var(--text-main); box-shadow: 0 5px 15px rgba(0,0,0,0.3); white-space: pre-wrap; max-width: 90%; transition: border-color 0.1s, background-color 0.15s; }
         
+        /* Armor Styling */
         .falling-word.armored { border: 3px solid #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); } 
         .armor-badge { color: #60a5fa; font-weight: 800; font-size: 0.9rem; margin-left: 5px; }
+        
         .falling-word.targeted { border-color: var(--extra); box-shadow: 0 0 20px var(--extra-bg), 0 5px 15px rgba(0,0,0,0.3); z-index: 10;}
         .falling-word.boss { background: var(--extra-bg); border-color: var(--extra); padding: 25px; border-width: 4px; font-size: 1.25rem; font-weight: 800; line-height: 1.6; text-align: center; }
         
@@ -147,9 +151,11 @@
         </div>
     </div>
 
+    <!-- SHOOTER GAME CONTAINER -->
     <div class="container hidden" id="shooter-container">
         <div class="shooter-layout">
             
+            <!-- SIDEBAR -->
             <div class="shooter-sidebar">
                 <div>
                     <div style="font-weight: 800; color: var(--primary); font-size: 1.1rem; letter-spacing: 1px;">WAVE</div>
@@ -161,13 +167,14 @@
                 </div>
                 <div>
                     <div style="font-weight: 800; color: var(--extra); font-size: 1.1rem; letter-spacing: 1px;">NYAWA</div>
-                    <div id="sh-lives-display" style="font-size: 2.2rem; line-height: 1; margin-top: 5px;">❤️❤️</div>
+                    <div id="sh-lives-display" style="font-size: 2.2rem; line-height: 1; margin-top: 5px;">❤️❤️❤️❤️❤️</div>
                 </div>
                 <div style="margin-top: auto;">
                     <button class="control-btn" style="width: 100%; padding: 15px;" onclick="returnToMenu()">⬅️ Quit Game</button>
                 </div>
             </div>
 
+            <!-- GAME ZONE -->
             <div id="shooter-zone" onclick="document.getElementById('shooter-input').focus()">
                 <div class="intermission-overlay" id="intermission-screen">
                     <h2 class="int-title" id="int-title-text">Wave 1 Cleared!</h2>
@@ -188,6 +195,7 @@
         <input type="text" id="shooter-input" style="opacity:0; position:absolute; top:-1000px;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
     </div>
 
+    <!-- RESULT CONTAINER -->
     <div class="container hidden" id="result-container">
         <div class="result-box">
             <h2 id="result-title">Selesai!</h2>
@@ -210,6 +218,7 @@
         </div>
     </div>
 
+    <!-- MENGHUBUNGKAN DATA DARI FOLDER DATA -->
     <script src="data/referensi.js"></script>
 
     <script>
@@ -230,7 +239,7 @@
 
         let currentTheme = 'perkapalan'; let shooterActive = false;
         let shooterAnimReq; let shooterEnemies = []; let activeTarget = null;
-        let shooterWave = 1; let maxWaves = 20; let shooterLives = 2;
+        let shooterWave = 1; let maxWaves = 20; let shooterLives = 5; // 5 Darah
         let wordsDefeatedInWave = 0; let wordsToBeatForWave = 10;
         let isBossWave = false; let bossActive = false; let inIntermission = false;
         let spawnInterval = 2000; let lastSpawnTime = 0;
@@ -258,7 +267,7 @@
             const zone = document.getElementById('shooter-zone'); zone.querySelectorAll('.falling-word').forEach(e => e.remove());
             document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
 
-            shooterEnemies = []; activeTarget = null; shooterWave = 1; shooterLives = 2; 
+            shooterEnemies = []; activeTarget = null; shooterWave = 1; shooterLives = 5; 
             wordsDefeatedInWave = 0; wordsToBeatForWave = 10 + Math.floor(shooterWave * 2); 
             isBossWave = false; bossActive = false; inIntermission = false;
             waveKpmHistory = []; totalShooterKeystrokes = 0; totalShooterTimeMs = 0;
@@ -366,6 +375,7 @@
                     activeTarget.typed += activeTarget.untyped[0]; activeTarget.untyped = activeTarget.untyped.substring(1); updateEnemyDOM(activeTarget);
                     if (activeTarget.untyped.length === 0) {
                         if (activeTarget.hp > 1) {
+                            // Hancurkan Armor
                             activeTarget.hp--; activeTarget.typed = ''; activeTarget.untyped = activeTarget.text; activeTarget.el.classList.remove('armored');
                             updateEnemyDOM(activeTarget); activeTarget.el.style.backgroundColor = "rgba(59, 130, 246, 0.3)"; setTimeout(() => { if(activeTarget) activeTarget.el.style.backgroundColor = "var(--bg-main)"; }, 150);
                         } else {
