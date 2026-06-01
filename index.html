@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Typing Master - Classic Training</title>
-    <style>
+    <title>Typing Defender - Survival Mode</title>
+  <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
         /* === CSS VARIABLES & THEMES === */
-        :root { --bg-main: #0f172a; --bg-dot: #334155; --container-bg: rgba(30, 41, 59, 0.7); --primary: #38bdf8; --primary-grad-1: #38bdf8; --primary-grad-2: #818cf8; --primary-glow: rgba(56, 189, 248, 0.25); --primary-trans: rgba(56, 189, 248, 0.1); --correct: #34d399; --incorrect: #f87171; --incorrect-bg: rgba(248, 113, 113, 0.15); --extra: #f43f5e; --extra-bg: rgba(244, 63, 94, 0.2); --text-main: #f8fafc; --text-muted: #94a3b8; --panel-bg: rgba(0, 0, 0, 0.2); --panel-bg-focus: rgba(0, 0, 0, 0.4); --border-light: rgba(255, 255, 255, 0.05); --border-strong: rgba(255, 255, 255, 0.1); --btn-text: #000; --gold-text: #fbbf24; --gold-bg: rgba(251, 191, 36, 0.15); --gold-border: rgba(251, 191, 36, 0.4); }
+        :root {
+            --bg-main: #0f172a; --bg-dot: #334155; --container-bg: rgba(30, 41, 59, 0.7);
+            --primary: #38bdf8; --primary-grad-1: #38bdf8; --primary-grad-2: #818cf8;
+            --primary-glow: rgba(56, 189, 248, 0.25); --primary-trans: rgba(56, 189, 248, 0.1);
+            --correct: #34d399; --incorrect: #f87171; --incorrect-bg: rgba(248, 113, 113, 0.15);
+            --extra: #f43f5e; --extra-bg: rgba(244, 63, 94, 0.2);
+            --text-main: #f8fafc; --text-muted: #94a3b8;
+            --panel-bg: rgba(0, 0, 0, 0.2); --panel-bg-focus: rgba(0, 0, 0, 0.4);
+            --border-light: rgba(255, 255, 255, 0.05); --border-strong: rgba(255, 255, 255, 0.1);
+            --btn-text: #000; --gold-text: #fbbf24; --gold-bg: rgba(251, 191, 36, 0.15); --gold-border: rgba(251, 191, 36, 0.4);
+        }
+
         [data-theme="cyberpunk"] { --bg-main: #09090b; --bg-dot: #500724; --container-bg: rgba(9, 9, 11, 0.8); --primary: #f472b6; --primary-grad-1: #f472b6; --primary-grad-2: #2dd4bf; --primary-glow: rgba(244, 114, 182, 0.3); --primary-trans: rgba(244, 114, 182, 0.1); --correct: #2dd4bf; --incorrect: #fb7185; --incorrect-bg: rgba(251, 113, 133, 0.15); --extra: #e11d48; --extra-bg: rgba(225, 29, 72, 0.25); --text-main: #fff; --text-muted: #a1a1aa; --panel-bg: rgba(0, 0, 0, 0.4); --panel-bg-focus: rgba(0, 0, 0, 0.6); --border-light: rgba(244, 114, 182, 0.1); --border-strong: rgba(45, 212, 191, 0.2); }
         [data-theme="ocean"] { --bg-main: #082f49; --bg-dot: #0c4a6e; --container-bg: rgba(8, 47, 73, 0.75); --primary: #38bdf8; --primary-grad-1: #38bdf8; --primary-grad-2: #34d399; --primary-glow: rgba(56, 189, 248, 0.3); --primary-trans: rgba(56, 189, 248, 0.1); --correct: #34d399; --incorrect: #fbbf24; --incorrect-bg: rgba(251, 191, 36, 0.15); --extra: #f59e0b; --extra-bg: rgba(245, 158, 11, 0.25); --text-main: #f0f9ff; --text-muted: #7dd3fc; --panel-bg: rgba(0, 0, 0, 0.25); --panel-bg-focus: rgba(0, 0, 0, 0.45); --border-light: rgba(56, 189, 248, 0.1); --border-strong: rgba(56, 189, 248, 0.2); }
         [data-theme="matcha"] { --bg-main: #1c1917; --bg-dot: #292524; --container-bg: rgba(28, 25, 23, 0.85); --primary: #a3e635; --primary-grad-1: #a3e635; --primary-grad-2: #4ade80; --primary-glow: rgba(163, 230, 53, 0.25); --primary-trans: rgba(163, 230, 53, 0.1); --correct: #4ade80; --incorrect: #f87171; --incorrect-bg: rgba(248, 113, 113, 0.15); --extra: #ef4444; --extra-bg: rgba(239, 68, 68, 0.2); --text-main: #fafaf9; --text-muted: #a8a29e; --panel-bg: rgba(0, 0, 0, 0.3); --panel-bg-focus: rgba(0, 0, 0, 0.5); --border-light: rgba(163, 230, 53, 0.05); --border-strong: rgba(163, 230, 53, 0.1); }
@@ -16,50 +27,73 @@
         [data-theme="kawaii"] { --bg-main: #fdf2f8; --bg-dot: #fbcfe8; --container-bg: rgba(255, 255, 255, 0.85); --primary: #db2777; --primary-grad-1: #f472b6; --primary-grad-2: #db2777; --primary-glow: rgba(219, 39, 119, 0.3); --primary-trans: rgba(219, 39, 119, 0.1); --correct: #059669; --incorrect: #e11d48; --incorrect-bg: rgba(225, 29, 72, 0.15); --extra: #9f1239; --extra-bg: rgba(159, 18, 57, 0.2); --text-main: #4a044e; --text-muted: #86198f; --panel-bg: rgba(251, 207, 232, 0.5); --panel-bg-focus: rgba(255, 255, 255, 0.8); --border-light: rgba(219, 39, 119, 0.15); --border-strong: rgba(219, 39, 119, 0.3); --btn-text: #ffffff; --gold-text: #d97706; --gold-bg: rgba(245, 158, 11, 0.15); --gold-border: rgba(245, 158, 11, 0.4); }
 
         ::-webkit-scrollbar { display: none; } * { -ms-overflow-style: none; scrollbar-width: none; }
+
         body { background-color: var(--bg-main); background-image: radial-gradient(var(--bg-dot) 1px, transparent 1px); background-size: 24px 24px; color: var(--text-main); font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; transition: background-color 0.4s ease, background-image 0.4s ease; }
-        .container { background: var(--container-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); padding: 40px 35px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); width: 95%; max-width: 850px; box-sizing: border-box; max-height: 100vh; overflow-y: auto; transition: all 0.4s ease; position: relative; }
         
+        .container { background: var(--container-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); padding: 40px 35px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); width: 95%; max-width: 1100px; box-sizing: border-box; max-height: 100vh; overflow-y: auto; transition: all 0.4s ease; position: relative; }
+
         .menu-header { text-align: center; margin-bottom: 25px; }
         .menu-header h1 { background: linear-gradient(to right, var(--primary-grad-1), var(--primary-grad-2)); -webkit-background-clip: text; color: transparent; font-size: 2.5rem; margin-bottom: 5px; margin-top: 0; font-weight: 800; letter-spacing: -1px; }
         .menu-header p { color: var(--text-muted); font-size: 0.95rem; font-weight: 400; margin-bottom: 15px;}
-        .best-all-time { background: var(--gold-bg); border: 1px solid var(--gold-border); color: var(--gold-text); padding: 8px 16px; border-radius: 20px; display: inline-block; font-weight: 800; font-size: 0.95rem; box-shadow: 0 0 15px rgba(251, 191, 36, 0.1); }
-        .settings-panel { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; background: var(--panel-bg); padding: 12px; border-radius: 16px; flex-wrap: wrap; }
-        .setting-group { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);}
-        .setting-group select { background: var(--panel-bg); border: 1px solid var(--border-strong); color: var(--text-main); padding: 8px 12px; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 600; outline: none; cursor: pointer; }
-        .setting-group select:hover { border-color: var(--primary); background: var(--primary-trans); }
-        .setting-group select option { background: var(--bg-main); color: var(--text-main); }
-
-        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .menu-btn { background: var(--panel-bg); border: 1px solid var(--border-light); color: var(--text-main); padding: 20px; border-radius: 16px; font-size: 1.1rem; text-align: left; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-        .menu-btn:hover { background: var(--primary-trans); border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 10px 25px -5px var(--primary-glow); }
-        .menu-btn strong { font-size: 1.15rem; color: var(--primary); margin-bottom: 6px; font-weight: 600; }
-        .menu-btn span { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-        .mode-best-badge { display: inline-flex; align-items: center; margin-top: 10px; font-size: 0.75rem; color: var(--gold-text); background: var(--panel-bg); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--gold-border); font-weight: 600; width: fit-content; }
+        .mode-best-badge { display: inline-flex; align-items: center; margin-top: 10px; font-size: 0.9rem; color: var(--gold-text); background: var(--panel-bg); padding: 8px 15px; border-radius: 8px; border: 1px solid var(--gold-border); font-weight: 600; width: fit-content; }
         
-        .switch-app-btn { grid-column: 1 / -1; background: var(--correct); color: #000; text-align: center; justify-content: center; align-items: center; font-weight: 800; border: none; padding: 15px; font-size: 1.1rem; box-shadow: 0 0 15px rgba(52, 211, 153, 0.4);}
-        .switch-app-btn:hover { background: #10b981; color: #fff; transform: scale(1.02); }
+        .btn-grid { display: flex; flex-direction: column; gap: 15px; }
+        .menu-btn { background: rgba(244, 63, 94, 0.05); border: 1px solid rgba(244, 63, 94, 0.4); color: var(--text-main); padding: 25px; border-radius: 16px; font-size: 1.1rem; text-align: left; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .menu-btn:hover { background: var(--extra-bg); border-color: var(--extra); transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.3); }
+        .menu-btn strong { font-size: 1.5rem; color: var(--extra); margin-bottom: 6px; font-weight: 800; }
+        .menu-btn span { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
 
-        .stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border-strong); }
-        #time-display-wrapper { font-weight: 600; color: var(--text-muted); font-size: 1.1rem; }
-        #time-display-text { color: var(--extra); font-size: 1.8rem; font-weight: 800; text-shadow: 0 0 15px var(--extra-bg); }
-        .top-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
-        .control-btn { background: var(--panel-bg); color: var(--text-main); border: 1px solid var(--border-strong); padding: 10px 16px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.2s; display: flex; justify-content: center; align-items: center; font-size: 0.95rem;}
+        .switch-app-btn { background: var(--primary); color: #000; text-align: center; justify-content: center; align-items: center; font-weight: 800; border: none; padding: 15px; font-size: 1.1rem; box-shadow: 0 0 15px var(--primary-glow);}
+        .switch-app-btn:hover { background: #0284c7; color: #fff; transform: scale(1.02); }
+
+        .control-btn { background: var(--panel-bg); color: var(--text-main); border: 1px solid var(--border-strong); padding: 10px 16px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.2s; display: flex; justify-content: center; align-items: center; font-size: 0.95rem; gap: 5px;}
         .control-btn:hover { background: var(--primary-trans); transform: scale(1.05); }
-        #finish-btn { border-color: var(--extra-bg); color: var(--extra); }
-        #finish-btn:hover { background: var(--extra); color: white; box-shadow: 0 0 15px var(--extra-bg); }
 
-        #word-display { font-family: 'Consolas', monospace; font-size: 1.6rem; line-height: 1.6; color: var(--text-muted); display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px 14px; height: 125px; overflow-y: hidden; margin-bottom: 25px; user-select: none; padding: 10px; scroll-behavior: smooth; font-weight: 600; }
-        .word { display: inline-flex; transition: 0.1s; border-bottom: 3px solid transparent; border-radius: 2px;}
-        .word.active { border-bottom: 3px solid var(--primary); color: var(--text-main); }
-        .letter { transition: 0.1s; }
-        .letter.correct { color: var(--correct); text-shadow: 0 0 8px rgba(52, 211, 153, 0.2); } 
-        .letter.incorrect { color: var(--incorrect); background-color: var(--incorrect-bg); border-radius: 4px; }
-        .letter.extra { color: var(--extra); font-weight: 800; background-color: var(--extra-bg); }
-
-        input.classic-input { width: 100%; padding: 18px 20px; font-size: 1.3rem; text-align: center; border: 2px solid var(--border-strong); border-radius: 16px; background: var(--panel-bg); color: var(--primary); outline: none; transition: all 0.3s; font-family: 'Inter', sans-serif; font-weight: 600; }
-        input.classic-input:focus { border-color: var(--primary); background: var(--panel-bg-focus); box-shadow: 0 0 20px var(--primary-glow); }
-        input.classic-input::placeholder { color: var(--text-muted); font-weight: 400; opacity: 0.6;}
+        /* === LAYOUT SHOOTER ZONE === */
+        .shooter-layout { display: flex; gap: 20px; height: 75vh; min-height: 600px; width: 100%; }
+        .shooter-sidebar { flex: 0 0 220px; background: var(--panel-bg); border-radius: 16px; padding: 25px 20px; display: flex; flex-direction: column; gap: 20px; border: 1px solid var(--border-strong); box-shadow: inset 0 0 20px rgba(0,0,0,0.2); }
         
+        #shooter-zone { flex: 1; position: relative; height: 100%; overflow: hidden; border: 2px solid var(--border-strong); border-radius: 16px; background: var(--panel-bg); cursor: pointer; box-shadow: inset 0 0 20px rgba(0,0,0,0.2); background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px); background-size: 20px 20px; }
+        
+        .falling-word { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 15px; background: var(--bg-main); border: 2px solid var(--border-strong); border-radius: 12px; font-family: 'Consolas', monospace; font-size: 1.15rem; font-weight: 600; color: var(--text-main); box-shadow: 0 5px 15px rgba(0,0,0,0.3); white-space: pre-wrap; max-width: 90%; transition: border-color 0.1s, background-color 0.15s; }
+        
+        /* Armor Styling */
+        .falling-word.armored { border: 3px solid #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); } 
+        .armor-badge { color: #60a5fa; font-weight: 800; font-size: 0.9rem; margin-left: 5px; }
+        
+        .falling-word.targeted { border-color: var(--extra); box-shadow: 0 0 20px var(--extra-bg), 0 5px 15px rgba(0,0,0,0.3); z-index: 10;}
+        .falling-word.boss { border-color: var(--gold-border); box-shadow: 0 0 15px var(--gold-bg); background: rgba(251, 191, 36, 0.1); font-size: 1.2rem;}
+        
+        .fw-typed { color: var(--correct); text-shadow: 0 0 5px var(--correct); }
+        .fw-untyped { color: var(--text-main); }
+        
+        /* === NEW HEALTH BAR & ANIMATIONS === */
+        .health-wrapper { width: 100%; height: 25px; background: rgba(0,0,0,0.5); border-radius: 12px; overflow: hidden; border: 2px solid var(--border-strong); position: relative; margin-top: 5px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);}
+        .health-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #f43f5e, #fb7185); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
+        .health-text { position: absolute; width: 100%; text-align: center; top: 0; left: 0; font-size: 0.9rem; font-weight: 800; color: white; line-height: 25px; text-shadow: 1px 1px 2px black; }
+        
+        .damage-shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(6px, 0, 0); } }
+        
+        .screen-flash { animation: flashRed 0.3s ease-out; }
+        @keyframes flashRed { 0% { box-shadow: inset 0 0 100px var(--extra); border-color: var(--extra); } 100% { box-shadow: inset 0 0 20px rgba(0,0,0,0.2); border-color: var(--border-strong); } }
+
+        /* Colorful Particle Explosion */
+        .particle { position: absolute; font-family: 'Consolas', monospace; font-size: 1.4rem; font-weight: 800; pointer-events: none; animation: explode 0.5s forwards ease-out; z-index: 20;}
+        @keyframes explode { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; } }
+
+        /* OVERLAYS */
+        .intermission-overlay, .pause-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 50; border-radius: 14px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .intermission-overlay.show, .pause-overlay.show { opacity: 1; pointer-events: all; }
+        .int-title { font-size: 3rem; font-weight: 800; color: var(--primary); margin: 0; text-shadow: 0 0 20px var(--primary-glow); text-align: center;}
+        .int-kpm { font-size: 1.5rem; color: var(--correct); margin: 10px 0; font-weight: 600;}
+        .int-countdown { font-size: 5rem; font-weight: 800; color: var(--extra); margin-top: 20px; }
+        
+        .victory-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(251, 191, 36, 0.2); backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; border-radius: 24px; opacity: 0; pointer-events: none; transition: opacity 0.5s; }
+        .victory-overlay.show { opacity: 1; pointer-events: all; animation: pulseWin 2s infinite alternate; }
+        @keyframes pulseWin { 0% { box-shadow: inset 0 0 30px var(--gold-border); } 100% { box-shadow: inset 0 0 100px var(--gold-border); } }
+        .vic-title { font-size: 4.5rem; font-weight: 800; background: linear-gradient(to right, #fbbf24, #f59e0b); -webkit-background-clip: text; color: transparent; margin: 0; filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.5)); text-align: center; line-height:1;}
+
         .hidden { display: none !important; }
         .result-box { text-align: center; }
         .result-box h2 { font-size: 2.2rem; color: var(--text-main); margin-top: 0; letter-spacing: -1px; }
@@ -67,20 +101,28 @@
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--panel-bg); padding: 20px; border-radius: 16px; margin-bottom: 20px; text-align: left; border: 1px solid var(--border-light); }
         .stats-grid div { font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; }
         .stats-grid span { font-weight: 800; font-size: 1.3rem; margin-top: 4px; }
-        .wrong-words-box { background: var(--extra-bg); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 12px; padding: 15px; margin-bottom: 25px; text-align: left; max-height: 100px; overflow-y: auto; font-size: 0.95rem; color: var(--extra); }
-        .wrong-words-title { color: var(--extra); font-weight: 600; margin-bottom: 8px; display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
+        .history-box { background: var(--panel-bg); border: 1px solid var(--border-strong); border-radius: 12px; padding: 15px; margin-bottom: 25px; text-align: left; max-height: 250px; overflow-y: auto; font-size: 0.95rem; }
+        .history-title { color: var(--primary); font-weight: 600; margin-bottom: 12px; display: block; font-size: 0.9rem; text-transform: uppercase; border-bottom: 1px solid var(--border-light); padding-bottom: 8px;}
+        .history-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+        .history-item { background: rgba(0,0,0,0.3); padding: 6px 10px; border-radius: 6px; text-align: center; border: 1px solid var(--border-light);}
+        .history-item span { display: block; font-size: 0.8rem; color: var(--text-muted);}
+        .history-item strong { color: var(--correct); font-size: 1.1rem;}
         .text-green { color: var(--correct); } .text-red { color: var(--incorrect); } .text-blue { color: var(--primary); } .text-white { color: var(--text-main); } .text-yellow { color: var(--gold-text); }
+        
         .btn-group { display: flex; flex-direction: column; gap: 12px; }
         button.main-btn { padding: 16px; font-size: 1.1rem; background: linear-gradient(135deg, var(--primary-grad-1), var(--primary-grad-2)); color: var(--btn-text); border: none; border-radius: 12px; cursor: pointer; font-weight: 800; width: 100%; box-shadow: 0 10px 20px -10px var(--primary-glow); }
         button.main-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 25px -10px var(--primary-glow); }
         button.secondary-btn { background: var(--panel-bg); border: 1px solid var(--border-strong); color: var(--text-main); box-shadow: none; font-weight: 600; }
         button.secondary-btn:hover { background: var(--primary-trans); }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .container { padding: 25px 20px; border-radius: 20px; }
-            .btn-grid { grid-template-columns: 1fr; }
-            #word-display { font-size: 1.3rem; height: 105px; gap: 6px 10px; }
-            input.classic-input { font-size: 1.1rem; padding: 15px; }
+            .shooter-layout { flex-direction: column; height: 85vh; }
+            .shooter-sidebar { flex: 0 0 auto; flex-direction: row; flex-wrap: wrap; padding: 15px; justify-content: space-between; align-items: center; gap: 10px;}
+            .shooter-sidebar > div { display: flex; flex-direction: column; align-items: center; }
+            .shooter-sidebar [id^="sh-"] { font-size: 1.5rem !important; }
+            .shooter-sidebar > div[style*="margin-top"] { margin-top: 0 !important; width: 100%; }
+            .vic-title { font-size: 3rem; }
         }
     </style>
 </head>
@@ -88,88 +130,90 @@
 
     <div class="container" id="menu-container">
         <div class="menu-header">
-            <h1>Typing Master Pro</h1>
-            <p>Latihan Ketelitian Akademik & Kasual</p>
-            <div class="best-all-time" id="best-all-time-display">🏆 Best of All Time: 0 KPM</div>
-        </div>
-
-        <div class="settings-panel">
-            <div class="setting-group">
-                <label>🎨 Tema:</label>
-                <select id="theme-selector" onchange="changeTheme(this.value)">
-                    <option value="slate">🌙 Slate (Default)</option>
-                    <option value="kawaii">🌸 Kawaii Pink</option>
-                    <option value="cyberpunk">🌃 Cyberpunk</option>
-                    <option value="ocean">🌊 Deep Ocean</option>
-                    <option value="matcha">🍵 Matcha Dark</option>
-                    <option value="hacker">💻 Hacker Terminal</option>
-                </select>
-            </div>
-            <div class="setting-group">
-                <label>🔊 Suara:</label>
-                <select id="sound-selector" onchange="changeSound(this.value)">
-                    <option value="thock">🎹 Thock (Mekanikal)</option>
-                    <option value="clicky">🖱️ Clicky (Blue Switch)</option>
-                    <option value="bubble">🫧 Bubble Pop</option>
-                    <option value="typewriter">📠 Typewriter</option>
-                    <option value="off">🔇 Mati</option>
-                </select>
-            </div>
+            <h1>Typing Defender 🚀</h1>
+            <p>Survival Mengetik Profesional</p>
+            <div class="mode-best-badge" id="best-mode-5">🌊 Best Wave: 0</div>
         </div>
 
         <div class="btn-grid">
-            <button class="menu-btn" onclick="selectMode(1)">
-                <strong>Mode 1: Kasual (60s)</strong>
-                <span>Fokus kecepatan murni. Kata hubung & kata kerja.</span>
-                <div class="mode-best-badge" id="best-mode-1">🏅 Rekor: 0 KPM</div>
-            </button>
-            <button class="menu-btn" onclick="selectMode(2)">
-                <strong>Mode 2: Kosakata Baku KTI (60s)</strong>
-                <span>Melatih ketelitian dengan bank kata baku PUEBI.</span>
-                <div class="mode-best-badge" id="best-mode-2">🏅 Rekor: 0 KPM</div>
-            </button>
-            <button class="menu-btn" onclick="selectMode(3)">
-                <strong>Mode 3: Kalimat KTI (60s)</strong>
-                <span>Menyusun rentetan kalimat Karya Tulis Ilmiah.</span>
-                <div class="mode-best-badge" id="best-mode-3">🏅 Rekor: 0 KPM</div>
-            </button>
-            <button class="menu-btn" onclick="selectMode(4)">
-                <strong>Mode 4: Simulasi KTI (Endless)</strong>
-                <span>Fokus penuh menyusun kalimat KTI tanpa waktu.</span>
-                <div class="mode-best-badge" id="best-mode-4">🏅 Rekor: 0 KPM</div>
+            <button class="menu-btn" onclick="document.getElementById('theme-container').classList.remove('hidden'); document.getElementById('menu-container').classList.add('hidden');">
+                <strong>⚔️ Mulai Pertarungan!</strong>
+                <span>Survival 20 Wave. Target ~90 KPM. Ganti target dengan [Spasi]. Boss Paragraf Horizontal!</span>
             </button>
             <button class="menu-btn switch-app-btn" onclick="window.location.href='game.html'">
-                🚀 Pindah ke Mode Game (Typing Defender)
+                📖 Pindah ke Mode Latihan Klasik
             </button>
         </div>
     </div>
 
     <div class="container hidden" id="theme-container">
-        <div class="menu-header"><h1>Pilih Referensi Teks</h1></div>
-        <div class="btn-grid" style="display:flex; flex-direction:column;">
+        <div class="menu-header"><h1>Pilih Kategori Teks</h1></div>
+        <div class="btn-grid">
             <button class="menu-btn" onclick="selectTheme('perkapalan')">
                 <strong>🚢 Teknik Perkapalan</strong>
-                <span>Hidrostatika, lines plan, CFD, stabilitas laut, dan mekanika fluida.</span>
+                <span>Hidrostatika, CFD, dan mekanika fluida.</span>
             </button>
             <button class="menu-btn" onclick="selectTheme('komunikasi')">
-                <strong>📝 Sintaksis & Ilmu Komunikasi</strong>
-                <span>Syarat kalimat efektif, literasi digital, public relations, dan semiotika media.</span>
+                <strong>📝 Ilmu Komunikasi</strong>
+                <span>Kalimat efektif dan literasi digital.</span>
             </button>
-            <button class="main-btn secondary-btn" style="margin-top: 10px;" onclick="returnToMenu()">Kembali ke Menu</button>
+            <button class="menu-btn" style="border-color:var(--gold-border); background:var(--gold-bg);" onclick="selectTheme('campur')">
+                <strong style="color:var(--gold-text);">🎲 Acak (Sangat Sulit)</strong>
+                <span>Kombinasi kata kasual, UTBK, dan KTI.</span>
+            </button>
+            <button class="main-btn secondary-btn" style="margin-top: 10px;" onclick="document.getElementById('theme-container').classList.add('hidden'); document.getElementById('menu-container').classList.remove('hidden');">Kembali</button>
         </div>
     </div>
 
-    <div class="container hidden" id="game-container">
-        <div class="stats">
-            <div id="time-display-wrapper"><span id="time-display-text">60</span></div>
-            <div class="top-controls">
-                <button class="control-btn" onclick="returnToMenu()">⬅️ Menu</button>
-                <button class="control-btn" id="finish-btn" onclick="endClassicGame()">🛑 Selesai</button>
-                <button class="control-btn" onclick="restartCurrentSession()">🔄</button>
+    <div class="container hidden" id="shooter-container">
+        <div class="shooter-layout">
+            
+            <div class="shooter-sidebar">
+                <div>
+                    <div style="font-weight: 800; color: var(--primary); font-size: 1.1rem; letter-spacing: 1px;">WAVE</div>
+                    <div id="sh-wave-text" style="font-size: 2.8rem; color: var(--text-main); font-weight: 800; line-height: 1;">1<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span></div>
+                </div>
+                <div>
+                    <div style="font-weight: 800; color: var(--correct); font-size: 1.1rem; letter-spacing: 1px;">KPM</div>
+                    <div id="sh-kpm-text" style="font-size: 2.8rem; color: var(--text-main); font-weight: 800; line-height: 1;">0</div>
+                </div>
+                <div id="health-box" style="width: 100%;">
+                    <div style="font-weight: 800; color: var(--extra); font-size: 1.1rem; letter-spacing: 1px; text-align: center;">INTEGRITAS</div>
+                    <div class="health-wrapper">
+                        <div class="health-fill" id="health-fill-bar"></div>
+                        <div class="health-text" id="health-text-val">100%</div>
+                    </div>
+                </div>
+                <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                    <button class="control-btn" style="padding: 15px;" onclick="togglePause()" id="pause-btn">⏸️ Pause</button>
+                    <button class="control-btn" style="padding: 15px; border-color: var(--extra-bg); color: var(--extra);" onclick="returnToMenu()">⏹️ Keluar</button>
+                </div>
+            </div>
+
+            <div id="shooter-zone" onclick="focusInput()">
+                <div class="intermission-overlay" id="intermission-screen">
+                    <h2 class="int-title" id="int-title-text">Wave 1 Cleared!</h2>
+                    <div class="int-kpm" id="int-kpm-text">Kecepatan: 0 KPM</div>
+                    <div class="int-countdown" id="int-countdown-text">3</div>
+                </div>
+                
+                <div class="pause-overlay" id="pause-screen">
+                    <h2 class="int-title" style="color: var(--text-main);">GAME PAUSED</h2>
+                    <button class="main-btn" style="width: 200px; margin-top: 30px;" onclick="togglePause()">Lanjutkan ▶️</button>
+                </div>
+
+                <div class="victory-overlay" id="victory-screen">
+                    <h2 class="vic-title">🏆 GOD OF TYPING 🏆</h2>
+                    <div class="vic-sub">Wave 20 Conquered!</div>
+                    <button class="main-btn" style="width:200px; margin-top:30px;" onclick="endShooterGame()">Lihat Hasil</button>
+                </div>
             </div>
         </div>
-        <div id="word-display"></div>
-        <input type="text" id="word-input" class="classic-input" placeholder="Mulai ketik..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
+
+        <div style="margin-top:15px; text-align:center; color:var(--text-muted); font-size:0.9rem;">
+            *Tekan <b>[Spasi]</b> untuk ganti kata/target.<br>Kata <b>[2x]</b> adalah Armor, ketik sampai habis lalu ketik sekali lagi!
+        </div>
+        <input type="text" id="shooter-input" style="opacity:0; position:absolute; top:-1000px;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
     </div>
 
     <div class="container hidden" id="result-container">
@@ -177,18 +221,18 @@
             <h2 id="result-title">Selesai!</h2>
             <p class="wpm-score"><span id="wpm">0</span> KPM</p>
             <div class="stats-grid">
-                <div><span class="text-muted">Akurasi</span> <span class="text-yellow" id="stat-1">0%</span></div>
-                <div><span class="text-muted">Waktu</span> <span class="text-white" id="stat-2">0s</span></div>
+                <div><span class="text-muted">Status</span> <span class="text-yellow" id="stat-1">GAME OVER</span></div>
+                <div><span class="text-muted">Bertahan</span> <span class="text-white" id="stat-2">0s</span></div>
                 <div>Total Ketukan <span class="text-blue" id="stat-total-letters">0</span></div>
-                <div>Kata Diselesaikan <span class="text-green" id="stat-words">0</span></div>
-                <div>Huruf Salah <span class="text-red" id="stat-incorrect-letters">0</span></div>
+                <div>Kata Dihancurkan <span class="text-green" id="stat-words">0</span></div>
+                <div>Wave Tercapai <span class="text-extra" id="stat-waves-reached" style="color:var(--extra);">0</span></div>
             </div>
-            <div class="wrong-words-box" id="wrong-words-box">
-                <span class="wrong-words-title">Kata Salah / Terlewat</span>
-                <span id="wrong-words-list">-</span>
+            <div class="history-box" id="wave-history-box">
+                <span class="history-title">Riwayat Kecepatan (KPM per Wave)</span>
+                <div class="history-list" id="wave-history-list"></div>
             </div>
             <div class="btn-group">
-                <button class="main-btn" onclick="restartCurrentSession()">Ulangi Latihan</button>
+                <button class="main-btn" onclick="selectTheme(currentTheme)">Ulangi Pertarungan</button>
                 <button class="main-btn secondary-btn" onclick="returnToMenu()">Menu Utama</button>
             </div>
         </div>
@@ -197,129 +241,343 @@
     <script src="referensi.js"></script>
 
     <script>
-        // === CORE CONFIG ===
-        let currentMode = 1; let currentTheme = 'perkapalan'; let isPlaying = false;
-        let time = 60; let elapsedSeconds = 0; let timerInterval; let currentWordIndex = 0; let wordEls = []; 
-        let currentSound = 'thock'; let audioCtx;
-
+        let audioCtx;
         function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-        function loadPreferences() {
-            let savedTheme = localStorage.getItem('typing_theme') || 'slate';
-            let savedSound = localStorage.getItem('typing_sound') || 'thock';
-            document.getElementById('theme-selector').value = savedTheme;
-            document.getElementById('sound-selector').value = savedSound;
-            changeTheme(savedTheme); currentSound = savedSound;
-        }
-        function changeTheme(themeName) {
-            if (themeName === 'slate') document.documentElement.removeAttribute('data-theme');
-            else document.documentElement.setAttribute('data-theme', themeName);
-            localStorage.setItem('typing_theme', themeName);
-        }
-        function changeSound(soundName) { currentSound = soundName; localStorage.setItem('typing_sound', soundName); initAudio(); playTypingSound(); }
-        function loadHighScores() {
-            let bestAll = localStorage.getItem('bestKPM_all') || 0;
-            document.getElementById('best-all-time-display').innerText = `🏆 Best of All Time: ${bestAll} KPM`;
-            for(let i=1; i<=4; i++) {
-                let badgeEl = document.getElementById(`best-mode-${i}`);
-                if(badgeEl) badgeEl.innerText = `🏅 Rekor: ${localStorage.getItem(`bestKPM_mode${i}`) || 0} KPM`;
-            }
-        }
-        function saveHighScore(mode, newKPM) {
-            let cb = parseInt(localStorage.getItem(`bestKPM_mode${mode}`) || 0); let ca = parseInt(localStorage.getItem('bestKPM_all') || 0);
-            if (newKPM > cb) localStorage.setItem(`bestKPM_mode${mode}`, newKPM);
-            if (newKPM > ca) localStorage.setItem('bestKPM_all', newKPM);
-            loadHighScores(); 
-        }
-        window.onload = function() { loadPreferences(); loadHighScores(); };
-
         function playTypingSound() {
-            if (currentSound === 'off' || !audioCtx) return;
+            let cs = localStorage.getItem('typing_sound') || 'thock'; if(cs==='off' || !audioCtx) return;
             if (audioCtx.state === 'suspended') audioCtx.resume();
             const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
-            if (currentSound === 'thock') { osc.type = 'sine'; osc.frequency.setValueAtTime(500, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.03); gain.gain.setValueAtTime(0.4, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03); } 
-            else if (currentSound === 'clicky') { osc.type = 'square'; osc.frequency.setValueAtTime(800, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.02); gain.gain.setValueAtTime(0.15, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.02); const filter = audioCtx.createBiquadFilter(); filter.type = 'highpass'; filter.frequency.value = 1000; osc.connect(filter); filter.connect(gain); } 
-            else if (currentSound === 'bubble') { osc.type = 'sine'; osc.frequency.setValueAtTime(300, audioCtx.currentTime); osc.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 0.04); gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04); } 
-            else if (currentSound === 'typewriter') { osc.type = 'triangle'; osc.frequency.setValueAtTime(1200, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05); gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05); }
-            if (currentSound !== 'clicky') osc.connect(gain);
-            gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.05);
+            if (cs === 'thock') { osc.type = 'sine'; osc.frequency.setValueAtTime(500, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.03); gain.gain.setValueAtTime(0.4, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03); } 
+            else if (cs === 'clicky') { osc.type = 'square'; osc.frequency.setValueAtTime(800, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.02); gain.gain.setValueAtTime(0.15, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.02); const filter = audioCtx.createBiquadFilter(); filter.type = 'highpass'; filter.frequency.value = 1000; osc.connect(filter); filter.connect(gain); } 
+            else if (cs === 'bubble') { osc.type = 'sine'; osc.frequency.setValueAtTime(300, audioCtx.currentTime); osc.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 0.04); gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04); } 
+            else if (cs === 'typewriter') { osc.type = 'triangle'; osc.frequency.setValueAtTime(1200, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05); gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05); }
+            if (cs !== 'clicky') osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.05);
         }
 
         function shuffleArray(array) { let s = array.slice(); for (let i = s.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [s[i], s[j]] = [s[j], s[i]]; } return s; }
 
-        function returnToMenu() { clearInterval(timerInterval); isPlaying = false; document.getElementById('theme-container').classList.add('hidden'); document.getElementById('game-container').classList.add('hidden'); document.getElementById('result-container').classList.add('hidden'); document.getElementById('menu-container').classList.remove('hidden'); loadHighScores(); }
-        function restartCurrentSession() { selectMode(currentMode); if(currentMode===3||currentMode===4) selectTheme(currentTheme); }
-        function selectMode(mode) { initAudio(); currentMode = mode; document.getElementById('menu-container').classList.add('hidden'); if (mode === 1 || mode === 2) { document.getElementById('game-container').classList.remove('hidden'); resetClassicSetup(); } else { document.getElementById('theme-container').classList.remove('hidden'); } }
-        function selectTheme(theme) { initAudio(); currentTheme = theme; document.getElementById('theme-container').classList.add('hidden'); document.getElementById('game-container').classList.remove('hidden'); resetClassicSetup(); }
+        let currentTheme = 'perkapalan'; let shooterActive = false; let isPaused = false;
+        let shooterAnimReq; let shooterEnemies = []; let activeTarget = null;
+        let shooterWave = 1; let maxWaves = 20; 
+        
+        let maxHealth = 100; let currentHealth = 100;
+        
+        // LIMITER PER WAVE
+        let wordsSpawnedInWave = 0; let wordsToBeatForWave = 10;
+        let bossWordsQueue = []; // Untuk menyimpan kata-kata boss yang akan di-spawn
 
-        const wordInput = document.getElementById('word-input');
-        function resetClassicSetup() {
-            const display = document.getElementById('word-display'); display.innerHTML = ''; wordInput.value = ''; wordInput.disabled = false;
-            currentWordIndex = 0; display.scrollTop = 0; isPlaying = false; elapsedSeconds = 0; clearInterval(timerInterval);
-            if (currentMode === 4) { document.getElementById('time-display-wrapper').innerHTML = `<span style="font-size:1.1rem; color:var(--text-muted);">Tak Terbatas</span>`; document.getElementById('finish-btn').style.display = 'flex'; } 
-            else { time = 60; document.getElementById('time-display-wrapper').innerHTML = `Waktu: <span id="time-display-text">60</span>s`; document.getElementById('finish-btn').style.display = 'none'; }
+        let isBossWave = false; let bossActive = false; let inIntermission = false;
+        let spawnInterval = 2000; let lastSpawnTime = 0; let pauseTimeDiff = 0;
+        let waveStartTime = 0; let waveKeystrokes = 0; let waveKpmHistory = []; 
+        let totalShooterKeystrokes = 0; let totalShooterTimeMs = 0; let wordsDefeatedTotal = 0;
 
-            let arr = [];
-            if (currentMode === 1) { let r = []; while(r.length < 300) r = r.concat(shuffleArray(dailyWords)); arr = r.slice(0, 300); } 
-            else if (currentMode === 2) { let r = []; while(r.length < 300) r = r.concat(shuffleArray(utbkWords)); arr = r.slice(0, 300); } 
-            else { let src = (currentTheme === 'perkapalan') ? ktiPerkapalan : ktiKomunikasi; let r = []; let limit = (currentMode === 4) ? 100 : 40; while(r.length < limit) r = r.concat(shuffleArray(src)); arr = r.slice(0, limit).join(" ").trim().split(" "); }
+        function loadHighScores() { document.getElementById('best-mode-5').innerText = `🌊 Best Wave: ${localStorage.getItem('bestWave_mode5') || 0}`; }
+        function saveBestWave(wave) { let c = parseInt(localStorage.getItem('bestWave_mode5') || 0); if (wave > c) localStorage.setItem('bestWave_mode5', wave); loadHighScores(); }
+        window.onload = function() { let th = localStorage.getItem('typing_theme') || 'slate'; if(th!=='slate') document.documentElement.setAttribute('data-theme', th); loadHighScores(); };
 
-            arr.forEach(word => {
-                const w = document.createElement('span'); w.classList.add('word');
-                word.split('').forEach(char => { const c = document.createElement('span'); c.classList.add('letter', 'original'); c.innerText = char; w.appendChild(c); });
-                display.appendChild(w);
-            });
-            wordEls = document.querySelectorAll('.word'); if(wordEls.length > 0) wordEls[0].classList.add('active'); wordInput.focus();
+        function focusInput() { if(!isPaused && !inIntermission) document.getElementById('shooter-input').focus(); }
+
+        function returnToMenu() {
+            cancelAnimationFrame(shooterAnimReq); shooterActive = false; isPaused = false;
+            document.getElementById('shooter-container').classList.add('hidden'); document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
+            document.getElementById('pause-screen').classList.remove('show');
+            document.getElementById('menu-container').classList.remove('hidden'); loadHighScores(); 
         }
 
-        wordInput.addEventListener('keydown', (e) => {
-            if (e.key.length === 1 || e.key === 'Backspace') playTypingSound();
-            if (e.code === 'Space') { e.preventDefault(); if (wordInput.value.trim().length === 0) return; if (!isPlaying) { isPlaying=true; timerInterval = setInterval(updateTime, 1000);} processWord(wordInput.value.trim()); }
-            if (e.key === 'Escape' && isPlaying && currentMode === 4) { e.preventDefault(); endClassicGame(); }
-        });
-
-        wordInput.addEventListener('input', (e) => {
-            if (!isPlaying && wordInput.value.length > 0) { isPlaying=true; timerInterval = setInterval(updateTime, 1000);}
-            if (wordInput.value.endsWith(' ')) { if (wordInput.value.trim().length > 0) processWord(wordInput.value.trim()); else wordInput.value = ''; return; }
-            const el = wordEls[currentWordIndex]; if (!el) return;
-            el.querySelectorAll('.letter.extra').forEach(e => e.remove());
-            const orig = el.querySelectorAll('.letter.original'); const typ = wordInput.value.split('');
-            orig.forEach((c, i) => { c.classList.remove('correct', 'incorrect'); if (typ[i] != null) { if (typ[i] === c.innerText) c.classList.add('correct'); else c.classList.add('incorrect'); } });
-            if (typ.length > orig.length) { for (let i = orig.length; i < typ.length; i++) { const ex = document.createElement('span'); ex.classList.add('letter', 'incorrect', 'extra'); ex.innerText = typ[i]; el.appendChild(ex); } }
-        });
-
-        function processWord(txt) {
-            const el = wordEls[currentWordIndex]; if (!el) return;
-            el.querySelectorAll('.letter.original').forEach((c, i) => { if (i >= txt.length) c.classList.add('incorrect'); });
-            el.classList.remove('active'); currentWordIndex++;
-            if (currentWordIndex >= wordEls.length) { endClassicGame(); return; }
-            const nx = wordEls[currentWordIndex]; nx.classList.add('active'); wordInput.value = ''; 
-            if (nx.offsetTop > el.offsetTop) document.getElementById('word-display').scrollTop += (nx.offsetTop - el.offsetTop);
+        function selectTheme(theme) {
+            initAudio(); currentTheme = theme; document.getElementById('theme-container').classList.add('hidden');
+            document.getElementById('shooter-container').classList.remove('hidden'); resetShooterSetup();
         }
-        function updateTime() { elapsedSeconds++; if (currentMode !== 4) { time--; document.getElementById('time-display-text').innerText = time; if (time <= 0) endClassicGame(); } }
 
-        function endClassicGame() {
-            isPlaying = false; clearInterval(timerInterval); wordInput.disabled = true;
-            const tCor = document.querySelectorAll('.letter.correct').length; const tInc = document.querySelectorAll('.letter.incorrect').length;
-            let cWords = 0; let wArr = [];
-            for (let i = 0; i <= currentWordIndex; i++) {
-                if (i >= wordEls.length) break;
-                const el = wordEls[i]; const cor = el.querySelectorAll('.letter.correct').length; const orig = el.querySelectorAll('.letter.original').length;
-                if (i === currentWordIndex && wordInput.value.trim().length === 0) continue; 
-                if (el.querySelector('.letter.incorrect') !== null || cor < orig) { let txt = ""; el.querySelectorAll('.letter').forEach(l => txt += l.innerText); wArr.push(txt); } else cWords++;
+        function updateHealthUI() {
+            let pct = Math.max(0, currentHealth);
+            document.getElementById('health-fill-bar').style.width = pct + '%';
+            document.getElementById('health-text-val').innerText = Math.round(pct) + '%';
+            
+            const box = document.getElementById('health-box');
+            box.classList.remove('damage-shake'); void box.offsetWidth; box.classList.add('damage-shake');
+            
+            const zone = document.getElementById('shooter-zone');
+            zone.classList.remove('screen-flash'); void zone.offsetWidth; zone.classList.add('screen-flash');
+        }
+
+        function takeDamage(wordString) {
+            let dmg = wordString.length * 2; // 1 huruf = 2% damage
+            currentHealth -= dmg;
+            updateHealthUI();
+            if (currentHealth <= 0) { recordWaveHistory(); endShooterGame(); }
+        }
+
+        function resetShooterSetup() {
+            cancelAnimationFrame(shooterAnimReq);
+            const zone = document.getElementById('shooter-zone'); zone.querySelectorAll('.falling-word').forEach(e => e.remove());
+            zone.querySelectorAll('.particle').forEach(e => e.remove());
+            document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
+            document.getElementById('pause-screen').classList.remove('show');
+
+            shooterEnemies = []; activeTarget = null; shooterWave = 1; currentHealth = maxHealth;
+            wordsSpawnedInWave = 0; wordsToBeatForWave = 10; bossWordsQueue = [];
+            bossActive = false; inIntermission = false; isPaused = false;
+            waveKpmHistory = []; totalShooterKeystrokes = 0; totalShooterTimeMs = 0; wordsDefeatedTotal = 0;
+            
+            document.getElementById('sh-wave-text').innerHTML = `${shooterWave}<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span>`; 
+            document.getElementById('sh-kpm-text').innerText = "0";
+            document.getElementById('health-fill-bar').style.width = '100%';
+            document.getElementById('health-text-val').innerText = '100%';
+            
+            const sInput = document.getElementById('shooter-input'); sInput.value = ''; sInput.disabled = false;
+            setTimeout(() => { sInput.focus(); }, 100); shooterActive = true; spawnInterval = 2000;
+            startWaveTimer(); shooterAnimReq = requestAnimationFrame(shooterLoop);
+        }
+
+        function startWaveTimer() { waveStartTime = performance.now(); waveKeystrokes = 0; lastSpawnTime = -9999999; }
+
+        function togglePause() {
+            if (!shooterActive || inIntermission || currentHealth <= 0) return;
+            const pauseBtn = document.getElementById('pause-btn');
+            
+            if (isPaused) {
+                isPaused = false; lastSpawnTime = performance.now() - pauseTimeDiff; 
+                shooterAnimReq = requestAnimationFrame(shooterLoop);
+                document.getElementById('pause-screen').classList.remove('show');
+                document.getElementById('shooter-input').focus(); pauseBtn.innerText = "⏸️ Pause";
+            } else {
+                isPaused = true; cancelAnimationFrame(shooterAnimReq); pauseTimeDiff = performance.now() - lastSpawnTime;
+                document.getElementById('pause-screen').classList.add('show'); pauseBtn.innerText = "▶️ Resume";
             }
-            let mins = elapsedSeconds / 60; if (mins === 0) mins = 1; 
-            let keys = tCor + tInc + currentWordIndex;
-            let kpm = Math.round((keys / 5) / mins - (wArr.length / mins)); if (kpm < 0) kpm = 0;
-            let acc = keys > 0 ? Math.round(((tCor + currentWordIndex) / keys) * 100) : 0; if (acc > 100) acc = 100;
-            saveHighScore(currentMode, kpm);
+        }
+
+        function getShooterWords(isBossRequest) {
+            let pool = (currentTheme === 'perkapalan') ? ktiPerkapalan : (currentTheme === 'komunikasi') ? ktiKomunikasi : dailyWords.concat(utbkWords); 
+            if (isBossRequest) {
+                let fullText = (currentTheme === 'campur') ? shuffleArray(utbkWords).slice(0, 20).join(" ") : shuffleArray(pool).slice(0, 4).join(" ");
+                let bossWords = fullText.split(" ").filter(w => w.length > 0);
+                return bossWords.map(w => w.replace(/[^a-zA-Z0-9-]/g, ''));
+            } else {
+                let tp = pool; if (currentTheme === 'campur' && shooterWave > 5 && Math.random() > 0.5) tp = utbkWords; 
+                let sent = shuffleArray(tp)[0]; 
+                if (currentTheme === 'campur') {
+                    if (shooterWave >= 2 && Math.random() < 0.35) return [shuffleArray(tp)[0] + " " + shuffleArray(tp)[0]];
+                    return [sent];
+                }
+                let words = sent.split(" "); let valid = words;
+                if (shooterWave > 5) valid = words.filter(w => w.length > 4); if (valid.length === 0) valid = words;
+                let w1 = shuffleArray(valid)[0].replace(/[^a-zA-Z0-9-]/g, '');
+                if (shooterWave >= 3 && Math.random() < 0.35) { let w2 = shuffleArray(valid)[0].replace(/[^a-zA-Z0-9-]/g, ''); return [w1 + " " + w2]; }
+                return [w1];
+            }
+        }
+
+        function spawnShooterEnemy() {
+            if (!shooterActive || inIntermission || isPaused) return;
+            if (wordsSpawnedInWave >= wordsToBeatForWave) return; // Mencegah spawn berlebih
+
+            let wordText = ""; let el = document.createElement('div'); 
+            let startY = -50; let speed = 0; let hp = 1;
+
+            if (isBossWave) {
+                wordText = bossWordsQueue[wordsSpawnedInWave];
+                el.className = 'falling-word boss';
+                
+                // Kalkulasi Tembok Baris Horizontal
+                let columns = 3;
+                let rowIndex = Math.floor(wordsSpawnedInWave / columns);
+                let colIndex = wordsSpawnedInWave % columns;
+                
+                document.getElementById('shooter-zone').appendChild(el);
+                let zoneW = document.getElementById('shooter-zone').offsetWidth;
+                let colW = zoneW / columns;
+                
+                // Kata pertama (index 0) akan jatuh duluan, jadi Y-nya di paling bawah (-60).
+                // Kata berikutnya (index besar) akan di-spawn lebih ke atas (-130, -200)
+                let x = (colIndex * colW) + (colW / 2) - (el.offsetWidth / 2);
+                if (x < 10) x = 10; if (x + el.offsetWidth > zoneW - 10) x = zoneW - el.offsetWidth - 10;
+                startY = -80 - (rowIndex * 80);
+                
+                speed = 0.08 + (shooterWave * 0.005); 
+                el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span>`;
+                el.style.left = x + 'px'; el.style.top = startY + 'px';
+                shooterEnemies.push({ el, text: wordText, typed: '', untyped: wordText, y: startY, speed: speed, isBoss: true, hp: 1 });
+            } else {
+                wordText = getShooterWords(false)[0];
+                el.className = 'falling-word';
+                speed = 0.5 + (shooterWave * 0.04); 
+                
+                if (shooterWave >= 3 && Math.random() < 0.25) { 
+                    hp = 2; el.classList.add('armored'); 
+                    el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span><span class="armor-badge">[2x]</span>`;
+                } else { el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span>`; }
+
+                document.getElementById('shooter-zone').appendChild(el);
+                let maxX = document.getElementById('shooter-zone').offsetWidth - el.offsetWidth - 20;
+                let x = Math.random() * Math.max(0, maxX) + 10;
+                if(x < 0) x = 0; el.style.left = x + 'px'; el.style.top = startY + 'px';
+                shooterEnemies.push({ el, text: wordText, typed: '', untyped: wordText, y: startY, speed: speed, isBoss: false, hp: hp });
+            }
+
+            wordsSpawnedInWave++;
+        }
+
+        function createExplosion(el) {
+            const zone = document.getElementById('shooter-zone');
+            const rect = el.getBoundingClientRect(); const zoneRect = zone.getBoundingClientRect();
+            const x = rect.left - zoneRect.left + (rect.width/2); const y = rect.top - zoneRect.top + (rect.height/2);
+            const text = el.innerText.replace('[2x]', '').trim();
+            const colors = ['#f43f5e', '#38bdf8', '#34d399', '#fbbf24', '#a855f7', '#ec4899'];
+
+            for(let i=0; i<text.length; i++) {
+                let p = document.createElement('span'); p.className = 'particle'; p.innerText = text[i];
+                p.style.left = x + 'px'; p.style.top = y + 'px';
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                p.style.color = randomColor; p.style.textShadow = `0 0 10px ${randomColor}`;
+                
+                p.style.setProperty('--tx', (Math.random() - 0.5) * 150 + 'px');
+                p.style.setProperty('--ty', (Math.random() - 0.5) * 150 + 'px');
+                p.style.setProperty('--rot', (Math.random() - 0.5) * 180 + 'deg');
+                zone.appendChild(p); setTimeout(() => p.remove(), 500);
+            }
+        }
+
+        function checkWaveClear() {
+            if (wordsSpawnedInWave >= wordsToBeatForWave && shooterEnemies.length === 0 && currentHealth > 0) {
+                triggerIntermission();
+            }
+        }
+
+        function shooterLoop(timestamp) {
+            if (!shooterActive || isPaused) return;
+            if (!inIntermission) {
+                if (timestamp - lastSpawnTime > spawnInterval) { spawnShooterEnemy(); lastSpawnTime = timestamp; }
+                const zh = document.getElementById('shooter-zone').clientHeight;
+                
+                for (let i = shooterEnemies.length - 1; i >= 0; i--) {
+                    let enemy = shooterEnemies[i]; enemy.y += enemy.speed; enemy.el.style.top = enemy.y + 'px';
+                    if (enemy.y + enemy.el.clientHeight >= zh) { 
+                        takeDamage(enemy.text); enemy.el.remove(); 
+                        if (activeTarget === enemy) activeTarget = null; 
+                        shooterEnemies.splice(i, 1); 
+                        checkWaveClear();
+                    }
+                }
+                
+                let mins = (timestamp - waveStartTime) / 60000;
+                if (mins > 0.05 && waveKeystrokes > 0) document.getElementById('sh-kpm-text').innerText = Math.round((waveKeystrokes / 5) / mins);
+            }
+            shooterAnimReq = requestAnimationFrame(shooterLoop);
+        }
+
+        const sInput = document.getElementById('shooter-input');
+        sInput.addEventListener('input', (e) => {
+            if (!shooterActive || inIntermission || isPaused) { sInput.value = ''; return; }
+            let val = sInput.value; sInput.value = ''; 
+            if (val.length > 0) { playTypingSound(); for(let i=0; i<val.length; i++) processShooterChar(val[i]); }
+        });
+
+        document.addEventListener('keydown', (e) => { 
+            if (e.key === 'Escape') { e.preventDefault(); togglePause(); return; }
+            if (shooterActive && !inIntermission && !isPaused && e.key.length === 1 && document.activeElement !== sInput) { 
+                if (e.code === 'Space') e.preventDefault();
+                sInput.focus(); playTypingSound(); processShooterChar(e.key); 
+            } 
+        });
+
+        function destroyEnemy(enemy, isArmorBreak = false) {
+            createExplosion(enemy.el);
+            if (isArmorBreak) {
+                enemy.hp--; enemy.typed = ''; enemy.untyped = enemy.text; enemy.el.classList.remove('armored');
+                updateEnemyDOM(enemy); enemy.el.style.backgroundColor = "rgba(59, 130, 246, 0.3)"; 
+                setTimeout(() => { if(enemy) enemy.el.style.backgroundColor = "var(--bg-main)"; }, 150);
+            } else {
+                enemy.el.remove(); shooterEnemies = shooterEnemies.filter(e => e !== enemy); 
+                if (activeTarget === enemy) activeTarget = null;
+                wordsDefeatedTotal++;
+                checkWaveClear();
+            }
+        }
+
+        function processShooterChar(char) {
+            waveKeystrokes++;
+            if (activeTarget) {
+                // ABORT TARGET MECHANIC: Tekan Spasi untuk membatalkan target jika Spasi bukan bagian dari kata
+                if (char === ' ' && activeTarget.untyped[0] !== ' ') {
+                    activeTarget.el.classList.remove('targeted'); activeTarget.typed = ''; activeTarget.untyped = activeTarget.text;
+                    updateEnemyDOM(activeTarget); activeTarget = null; return;
+                }
+
+                if (activeTarget.untyped[0] === char) {
+                    activeTarget.typed += activeTarget.untyped[0]; activeTarget.untyped = activeTarget.untyped.substring(1); updateEnemyDOM(activeTarget);
+                    if (activeTarget.untyped.length === 0) destroyEnemy(activeTarget, activeTarget.hp > 1);
+                } else { activeTarget.el.style.backgroundColor = "var(--extra-bg)"; setTimeout(() => { if(activeTarget) activeTarget.el.style.backgroundColor = "var(--bg-main)"; }, 100); }
+            } else {
+                // SMART TARGETING: Prioritaskan musuh yang posisinya paling bawah (Y terbesar)
+                let sortedEnemies = shooterEnemies.slice().sort((a, b) => b.y - a.y);
+                let target = sortedEnemies.find(w => w.untyped[0] === char);
+                
+                if (target) {
+                    activeTarget = target; activeTarget.el.classList.add('targeted'); activeTarget.typed += activeTarget.untyped[0]; activeTarget.untyped = activeTarget.untyped.substring(1); updateEnemyDOM(activeTarget);
+                    if (activeTarget.untyped.length === 0) destroyEnemy(activeTarget, activeTarget.hp > 1);
+                }
+            }
+        }
+
+        function updateEnemyDOM(enemy) { 
+            let armorHtml = enemy.hp > 1 ? `<span class="armor-badge">[2x]</span>` : '';
+            enemy.el.innerHTML = `<span class="fw-typed">${enemy.typed}</span><span class="fw-untyped">${enemy.untyped}</span>${armorHtml}`; 
+        }
+
+        function recordWaveHistory() {
+            let mins = (performance.now() - waveStartTime) / 60000; let fwk = mins > 0 ? Math.round((waveKeystrokes / 5) / mins) : 0;
+            waveKpmHistory.push({ wave: shooterWave, kpm: fwk }); totalShooterKeystrokes += waveKeystrokes; totalShooterTimeMs += (performance.now() - waveStartTime); return fwk;
+        }
+
+        function triggerIntermission() {
+            inIntermission = true; shooterEnemies.forEach(e => e.el.remove()); shooterEnemies = []; activeTarget = null;
+            let fwk = recordWaveHistory();
+            if (shooterWave >= maxWaves) { saveBestWave(shooterWave); document.getElementById('victory-screen').classList.add('show'); return; }
             
-            document.getElementById('wpm').innerText = kpm; document.getElementById('stat-total-letters').innerText = keys; document.getElementById('stat-words').innerText = cWords;
-            document.getElementById('stat-1').innerText = acc + "%"; document.getElementById('stat-2').innerText = elapsedSeconds+"s";
-            document.getElementById('stat-incorrect-letters').innerText = tInc;
-            const list = document.getElementById('wrong-words-list');
-            if (wArr.length > 0) list.innerText = [...new Set(wArr)].join(", "); else list.innerText = "Sempurna!";
+            const over = document.getElementById('intermission-screen');
+            document.getElementById('int-title-text').innerText = `Wave ${shooterWave} Cleared!`;
+            document.getElementById('int-kpm-text').innerText = `Kecepatan: ${fwk} KPM`; over.classList.add('show');
+            let cd = 3; document.getElementById('int-countdown-text').innerText = cd;
+            let iv = setInterval(() => { cd--; if (cd > 0) document.getElementById('int-countdown-text').innerText = cd; else { clearInterval(iv); over.classList.remove('show'); advanceToNextWave(); } }, 1000);
+        }
+
+        function advanceToNextWave() {
+            shooterWave++; document.getElementById('sh-wave-text').innerHTML = `${shooterWave}<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span>`;
+            wordsSpawnedInWave = 0;
             
-            document.getElementById('game-container').classList.add('hidden'); document.getElementById('result-container').classList.remove('hidden');
+            if (shooterWave % 5 === 0) { 
+                isBossWave = true; 
+                bossWordsQueue = getShooterWords(true);
+                wordsToBeatForWave = bossWordsQueue.length;
+                spawnInterval = 300; // Cepat agar formasi baris boss segera terbentuk
+            } else { 
+                isBossWave = false; 
+                wordsToBeatForWave = 10 + Math.floor(shooterWave * 1.5);
+                spawnInterval = Math.max(500, 2000 - (shooterWave * 60)); // Waktu spawn stabil
+            }
+            
+            inIntermission = false; startWaveTimer(); sInput.focus();
+        }
+
+        function endShooterGame() {
+            shooterActive = false; cancelAnimationFrame(shooterAnimReq); sInput.disabled = true;
+            document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
+            saveBestWave(shooterWave);
+            let tm = totalShooterTimeMs / 60000; let avg = tm > 0 ? Math.round((totalShooterKeystrokes / 5) / tm) : 0;
+            
+            if (shooterWave >= maxWaves && currentHealth > 0) { document.getElementById('stat-1').innerText = "VICTORY"; document.getElementById('stat-1').className = "text-yellow"; } 
+            else { document.getElementById('stat-1').innerText = "GAME OVER"; document.getElementById('stat-1').className = "text-red"; }
+            
+            document.getElementById('stat-2').innerText = Math.round(totalShooterTimeMs/1000) + "s";
+            document.getElementById('stat-waves-reached').innerText = shooterWave;
+            
+            const hl = document.getElementById('wave-history-list'); hl.innerHTML = '';
+            waveKpmHistory.forEach(h => { let d = document.createElement('div'); d.className = 'history-item'; d.innerHTML = `<span>Wave ${h.wave}</span><strong>${h.kpm} KPM</strong>`; hl.appendChild(d); });
+
+            document.getElementById('wpm').innerText = avg; document.getElementById('stat-total-letters').innerText = totalShooterKeystrokes; document.getElementById('stat-words').innerText = wordsDefeatedTotal;
+            document.getElementById('shooter-container').classList.add('hidden'); document.getElementById('result-container').classList.remove('hidden');
         }
     </script>
 </body>
