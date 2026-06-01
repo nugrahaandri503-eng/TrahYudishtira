@@ -27,7 +27,9 @@
         [data-theme="kawaii"] { --bg-main: #fdf2f8; --bg-dot: #fbcfe8; --container-bg: rgba(255, 255, 255, 0.85); --primary: #db2777; --primary-grad-1: #f472b6; --primary-grad-2: #db2777; --primary-glow: rgba(219, 39, 119, 0.3); --primary-trans: rgba(219, 39, 119, 0.1); --correct: #059669; --incorrect: #e11d48; --incorrect-bg: rgba(225, 29, 72, 0.15); --extra: #9f1239; --extra-bg: rgba(159, 18, 57, 0.2); --text-main: #4a044e; --text-muted: #86198f; --panel-bg: rgba(251, 207, 232, 0.5); --panel-bg-focus: rgba(255, 255, 255, 0.8); --border-light: rgba(219, 39, 119, 0.15); --border-strong: rgba(219, 39, 119, 0.3); --btn-text: #ffffff; --gold-text: #d97706; --gold-bg: rgba(245, 158, 11, 0.15); --gold-border: rgba(245, 158, 11, 0.4); }
 
         ::-webkit-scrollbar { display: none; } * { -ms-overflow-style: none; scrollbar-width: none; }
+
         body { background-color: var(--bg-main); background-image: radial-gradient(var(--bg-dot) 1px, transparent 1px); background-size: 24px 24px; color: var(--text-main); font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; transition: background-color 0.4s ease, background-image 0.4s ease; }
+        
         .container { background: var(--container-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); padding: 40px 35px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); width: 95%; max-width: 1100px; box-sizing: border-box; max-height: 100vh; overflow-y: auto; transition: all 0.4s ease; position: relative; }
 
         .menu-header { text-align: center; margin-bottom: 25px; }
@@ -54,10 +56,13 @@
         #shooter-zone { flex: 1; position: relative; height: 100%; overflow: hidden; border: 2px solid var(--border-strong); border-radius: 16px; background: var(--panel-bg); cursor: pointer; box-shadow: inset 0 0 20px rgba(0,0,0,0.2); background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px); background-size: 20px 20px; }
         
         .falling-word { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 15px; background: var(--bg-main); border: 2px solid var(--border-strong); border-radius: 12px; font-family: 'Consolas', monospace; font-size: 1.15rem; font-weight: 600; color: var(--text-main); box-shadow: 0 5px 15px rgba(0,0,0,0.3); white-space: pre-wrap; max-width: 90%; transition: border-color 0.1s, background-color 0.15s; }
+        
+        /* Armor Styling */
         .falling-word.armored { border: 3px solid #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); } 
         .armor-badge { color: #60a5fa; font-weight: 800; font-size: 0.9rem; margin-left: 5px; }
+        
         .falling-word.targeted { border-color: var(--extra); box-shadow: 0 0 20px var(--extra-bg), 0 5px 15px rgba(0,0,0,0.3); z-index: 10;}
-        .falling-word.boss { border-color: var(--gold-border); box-shadow: 0 0 15px var(--gold-bg); background: rgba(251, 191, 36, 0.1);}
+        .falling-word.boss { border-color: var(--gold-border); box-shadow: 0 0 15px var(--gold-bg); background: rgba(251, 191, 36, 0.1); font-size: 1.2rem;}
         
         .fw-typed { color: var(--correct); text-shadow: 0 0 5px var(--correct); }
         .fw-untyped { color: var(--text-main); }
@@ -73,7 +78,8 @@
         .screen-flash { animation: flashRed 0.3s ease-out; }
         @keyframes flashRed { 0% { box-shadow: inset 0 0 100px var(--extra); border-color: var(--extra); } 100% { box-shadow: inset 0 0 20px rgba(0,0,0,0.2); border-color: var(--border-strong); } }
 
-        .particle { position: absolute; font-family: 'Consolas', monospace; font-size: 1.4rem; font-weight: 800; color: var(--correct); pointer-events: none; animation: explode 0.5s forwards ease-out; text-shadow: 0 0 10px var(--correct); z-index: 20;}
+        /* Colorful Particle Explosion */
+        .particle { position: absolute; font-family: 'Consolas', monospace; font-size: 1.4rem; font-weight: 800; pointer-events: none; animation: explode 0.5s forwards ease-out; z-index: 20;}
         @keyframes explode { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; } }
 
         /* OVERLAYS */
@@ -132,7 +138,7 @@
         <div class="btn-grid">
             <button class="menu-btn" onclick="document.getElementById('theme-container').classList.remove('hidden'); document.getElementById('menu-container').classList.add('hidden');">
                 <strong>⚔️ Mulai Pertarungan!</strong>
-                <span>Survival 20 Wave. KPM ditargetkan untuk menyentuh 90 KPM. Peningkatan kesulitan presisi, Darah Persentase, dan Boss Paragraf.</span>
+                <span>Survival 20 Wave. Target ~90 KPM. Ganti target dengan [Spasi]. Boss Paragraf Horizontal!</span>
             </button>
             <button class="menu-btn switch-app-btn" onclick="window.location.href='index.html'">
                 📖 Pindah ke Mode Latihan Klasik
@@ -205,7 +211,7 @@
         </div>
 
         <div style="margin-top:15px; text-align:center; color:var(--text-muted); font-size:0.9rem;">
-            *Tap area permainan untuk memunculkan keyboard HP.<br>Kata <b>[2x]</b> adalah Armor, ketik sampai habis lalu ketik sekali lagi!
+            *Tekan <b>[Spasi]</b> untuk ganti kata/target.<br>Kata <b>[2x]</b> adalah Armor, ketik sampai habis lalu ketik sekali lagi!
         </div>
         <input type="text" id="shooter-input" style="opacity:0; position:absolute; top:-1000px;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
     </div>
@@ -254,14 +260,16 @@
         let shooterAnimReq; let shooterEnemies = []; let activeTarget = null;
         let shooterWave = 1; let maxWaves = 20; 
         
-        // HEALTH SYSTEM
         let maxHealth = 100; let currentHealth = 100;
         
-        let wordsDefeatedInWave = 0; let wordsToBeatForWave = 10;
-        let bossActive = false; let inIntermission = false;
+        // LIMITER PER WAVE
+        let wordsSpawnedInWave = 0; let wordsToBeatForWave = 10;
+        let bossWordsQueue = []; // Untuk menyimpan kata-kata boss yang akan di-spawn
+
+        let isBossWave = false; let bossActive = false; let inIntermission = false;
         let spawnInterval = 2000; let lastSpawnTime = 0; let pauseTimeDiff = 0;
         let waveStartTime = 0; let waveKeystrokes = 0; let waveKpmHistory = []; 
-        let totalShooterKeystrokes = 0; let totalShooterTimeMs = 0;
+        let totalShooterKeystrokes = 0; let totalShooterTimeMs = 0; let wordsDefeatedTotal = 0;
 
         function loadHighScores() { document.getElementById('best-mode-5').innerText = `🌊 Best Wave: ${localStorage.getItem('bestWave_mode5') || 0}`; }
         function saveBestWave(wave) { let c = parseInt(localStorage.getItem('bestWave_mode5') || 0); if (wave > c) localStorage.setItem('bestWave_mode5', wave); loadHighScores(); }
@@ -287,26 +295,18 @@
             document.getElementById('health-fill-bar').style.width = pct + '%';
             document.getElementById('health-text-val').innerText = Math.round(pct) + '%';
             
-            // Animasi shake
             const box = document.getElementById('health-box');
-            box.classList.remove('damage-shake');
-            void box.offsetWidth; // trigger reflow
-            box.classList.add('damage-shake');
+            box.classList.remove('damage-shake'); void box.offsetWidth; box.classList.add('damage-shake');
             
-            // Screen Flash
             const zone = document.getElementById('shooter-zone');
-            zone.classList.remove('screen-flash');
-            void zone.offsetWidth;
-            zone.classList.add('screen-flash');
+            zone.classList.remove('screen-flash'); void zone.offsetWidth; zone.classList.add('screen-flash');
         }
 
         function takeDamage(wordString) {
-            let dmg = wordString.length * 1.5; // 1 huruf = 1.5% damage
+            let dmg = wordString.length * 2; // 1 huruf = 2% damage
             currentHealth -= dmg;
             updateHealthUI();
-            if (currentHealth <= 0) {
-                recordWaveHistory(); endShooterGame();
-            }
+            if (currentHealth <= 0) { recordWaveHistory(); endShooterGame(); }
         }
 
         function resetShooterSetup() {
@@ -317,9 +317,9 @@
             document.getElementById('pause-screen').classList.remove('show');
 
             shooterEnemies = []; activeTarget = null; shooterWave = 1; currentHealth = maxHealth;
-            wordsDefeatedInWave = 0; wordsToBeatForWave = 10; 
+            wordsSpawnedInWave = 0; wordsToBeatForWave = 10; bossWordsQueue = [];
             bossActive = false; inIntermission = false; isPaused = false;
-            waveKpmHistory = []; totalShooterKeystrokes = 0; totalShooterTimeMs = 0;
+            waveKpmHistory = []; totalShooterKeystrokes = 0; totalShooterTimeMs = 0; wordsDefeatedTotal = 0;
             
             document.getElementById('sh-wave-text').innerHTML = `${shooterWave}<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span>`; 
             document.getElementById('sh-kpm-text').innerText = "0";
@@ -338,133 +338,110 @@
             const pauseBtn = document.getElementById('pause-btn');
             
             if (isPaused) {
-                isPaused = false;
-                lastSpawnTime = performance.now() - pauseTimeDiff; 
+                isPaused = false; lastSpawnTime = performance.now() - pauseTimeDiff; 
                 shooterAnimReq = requestAnimationFrame(shooterLoop);
                 document.getElementById('pause-screen').classList.remove('show');
-                document.getElementById('shooter-input').focus();
-                pauseBtn.innerText = "⏸️ Pause";
+                document.getElementById('shooter-input').focus(); pauseBtn.innerText = "⏸️ Pause";
             } else {
-                isPaused = true;
-                cancelAnimationFrame(shooterAnimReq);
-                pauseTimeDiff = performance.now() - lastSpawnTime;
-                document.getElementById('pause-screen').classList.add('show');
-                pauseBtn.innerText = "▶️ Resume";
+                isPaused = true; cancelAnimationFrame(shooterAnimReq); pauseTimeDiff = performance.now() - lastSpawnTime;
+                document.getElementById('pause-screen').classList.add('show'); pauseBtn.innerText = "▶️ Resume";
             }
         }
 
         function getShooterWords(isBossRequest) {
-            // Mengembalikan Array of Strings (satu elemen = satu div jatuh)
             let pool = (currentTheme === 'perkapalan') ? ktiPerkapalan : (currentTheme === 'komunikasi') ? ktiKomunikasi : dailyWords.concat(utbkWords); 
-            
             if (isBossRequest) {
-                // BOSS: 4 kalimat penuh
-                let sents = 4;
-                let fullText = (currentTheme === 'campur') ? shuffleArray(utbkWords).slice(0, 20).join(" ") : shuffleArray(pool).slice(0, sents).join(" ");
-                // Pecah teks panjang menjadi per kata agar jatuh berjejer (kolom)
+                let fullText = (currentTheme === 'campur') ? shuffleArray(utbkWords).slice(0, 20).join(" ") : shuffleArray(pool).slice(0, 4).join(" ");
                 let bossWords = fullText.split(" ").filter(w => w.length > 0);
                 return bossWords.map(w => w.replace(/[^a-zA-Z0-9-]/g, ''));
             } else {
                 let tp = pool; if (currentTheme === 'campur' && shooterWave > 5 && Math.random() > 0.5) tp = utbkWords; 
                 let sent = shuffleArray(tp)[0]; 
-                
                 if (currentTheme === 'campur') {
                     if (shooterWave >= 2 && Math.random() < 0.35) return [shuffleArray(tp)[0] + " " + shuffleArray(tp)[0]];
                     return [sent];
                 }
-                
                 let words = sent.split(" "); let valid = words;
                 if (shooterWave > 5) valid = words.filter(w => w.length > 4); if (valid.length === 0) valid = words;
-                
                 let w1 = shuffleArray(valid)[0].replace(/[^a-zA-Z0-9-]/g, '');
-                if (shooterWave >= 3 && Math.random() < 0.35) {
-                    let w2 = shuffleArray(valid)[0].replace(/[^a-zA-Z0-9-]/g, '');
-                    return [w1 + " " + w2];
-                }
+                if (shooterWave >= 3 && Math.random() < 0.35) { let w2 = shuffleArray(valid)[0].replace(/[^a-zA-Z0-9-]/g, ''); return [w1 + " " + w2]; }
                 return [w1];
             }
         }
 
         function spawnShooterEnemy() {
-            if (!shooterActive || bossActive || inIntermission || isPaused) return;
-            
-            let isBossWaveCheck = (shooterWave % 5 === 0);
-            let wordArr = getShooterWords(isBossWaveCheck); 
-            
-            if (isBossWaveCheck) {
-                bossActive = true;
-                // Spawn boss as a column of words. Lowest Y is the first word.
-                let startY = -50; 
-                let speed = 0.05 + (shooterWave * 0.005); // Pelan tapi mematikan
-                
-                // Urutan array adalah kalimat dibaca dari depan ke belakang.
-                // Agar kata pertama terbaca duluan, posisinya harus di paling bawah (Y paling besar).
-                // Kita akan me-render wordArr terbalik secara fisik.
-                let gapY = 50; 
-                for(let i=0; i<wordArr.length; i++) {
-                    let el = document.createElement('div');
-                    el.className = 'falling-word boss';
-                    el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordArr[i]}</span>`;
-                    document.getElementById('shooter-zone').appendChild(el);
-                    
-                    let x = (document.getElementById('shooter-zone').offsetWidth - el.offsetWidth) / 2;
-                    let objY = startY - (i * gapY); // Kata pertama di startY, kata kedua di startY-50, dst.
-                    
-                    if(x < 0) x = 0; el.style.left = x + 'px'; el.style.top = objY + 'px';
-                    shooterEnemies.push({ el, text: wordArr[i], typed: '', untyped: wordArr[i], y: objY, speed: speed, isBoss: true, hp: 1, bossTotal: wordArr.length });
-                }
+            if (!shooterActive || inIntermission || isPaused) return;
+            if (wordsSpawnedInWave >= wordsToBeatForWave) return; // Mencegah spawn berlebih
 
+            let wordText = ""; let el = document.createElement('div'); 
+            let startY = -50; let speed = 0; let hp = 1;
+
+            if (isBossWave) {
+                wordText = bossWordsQueue[wordsSpawnedInWave];
+                el.className = 'falling-word boss';
+                
+                // Kalkulasi Tembok Baris Horizontal
+                let columns = 3;
+                let rowIndex = Math.floor(wordsSpawnedInWave / columns);
+                let colIndex = wordsSpawnedInWave % columns;
+                
+                document.getElementById('shooter-zone').appendChild(el);
+                let zoneW = document.getElementById('shooter-zone').offsetWidth;
+                let colW = zoneW / columns;
+                
+                // Kata pertama (index 0) akan jatuh duluan, jadi Y-nya di paling bawah (-60).
+                // Kata berikutnya (index besar) akan di-spawn lebih ke atas (-130, -200)
+                let x = (colIndex * colW) + (colW / 2) - (el.offsetWidth / 2);
+                if (x < 10) x = 10; if (x + el.offsetWidth > zoneW - 10) x = zoneW - el.offsetWidth - 10;
+                startY = -80 - (rowIndex * 80);
+                
+                speed = 0.08 + (shooterWave * 0.005); 
+                el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span>`;
+                el.style.left = x + 'px'; el.style.top = startY + 'px';
+                shooterEnemies.push({ el, text: wordText, typed: '', untyped: wordText, y: startY, speed: speed, isBoss: true, hp: 1 });
             } else {
-                let wordText = wordArr[0];
-                let el = document.createElement('div'); 
-                let startY = -50; 
-                
-                // SKALA KECEPATAN (MANUSIAWI MENUJU 90 KPM)
-                let speed = 0.5 + (shooterWave * 0.04); 
-                let hp = 1;
-
+                wordText = getShooterWords(false)[0];
                 el.className = 'falling-word';
+                speed = 0.5 + (shooterWave * 0.04); 
+                
                 if (shooterWave >= 3 && Math.random() < 0.25) { 
                     hp = 2; el.classList.add('armored'); 
                     el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span><span class="armor-badge">[2x]</span>`;
-                } else {
-                    el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span>`;
-                }
+                } else { el.innerHTML = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span>`; }
 
                 document.getElementById('shooter-zone').appendChild(el);
                 let maxX = document.getElementById('shooter-zone').offsetWidth - el.offsetWidth - 20;
                 let x = Math.random() * Math.max(0, maxX) + 10;
-                el.style.left = x + 'px'; el.style.top = startY + 'px';
+                if(x < 0) x = 0; el.style.left = x + 'px'; el.style.top = startY + 'px';
                 shooterEnemies.push({ el, text: wordText, typed: '', untyped: wordText, y: startY, speed: speed, isBoss: false, hp: hp });
             }
+
+            wordsSpawnedInWave++;
         }
 
         function createExplosion(el) {
             const zone = document.getElementById('shooter-zone');
-            const rect = el.getBoundingClientRect();
-            const zoneRect = zone.getBoundingClientRect();
-            
-            const x = rect.left - zoneRect.left + (rect.width/2);
-            const y = rect.top - zoneRect.top + (rect.height/2);
+            const rect = el.getBoundingClientRect(); const zoneRect = zone.getBoundingClientRect();
+            const x = rect.left - zoneRect.left + (rect.width/2); const y = rect.top - zoneRect.top + (rect.height/2);
             const text = el.innerText.replace('[2x]', '').trim();
+            const colors = ['#f43f5e', '#38bdf8', '#34d399', '#fbbf24', '#a855f7', '#ec4899'];
 
             for(let i=0; i<text.length; i++) {
-                let p = document.createElement('span');
-                p.className = 'particle';
-                p.innerText = text[i];
-                p.style.left = x + 'px';
-                p.style.top = y + 'px';
+                let p = document.createElement('span'); p.className = 'particle'; p.innerText = text[i];
+                p.style.left = x + 'px'; p.style.top = y + 'px';
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                p.style.color = randomColor; p.style.textShadow = `0 0 10px ${randomColor}`;
                 
-                let tx = (Math.random() - 0.5) * 150 + 'px';
-                let ty = (Math.random() - 0.5) * 150 + 'px';
-                let rot = (Math.random() - 0.5) * 180 + 'deg';
-                
-                p.style.setProperty('--tx', tx);
-                p.style.setProperty('--ty', ty);
-                p.style.setProperty('--rot', rot);
-                zone.appendChild(p);
-                
-                setTimeout(() => p.remove(), 500);
+                p.style.setProperty('--tx', (Math.random() - 0.5) * 150 + 'px');
+                p.style.setProperty('--ty', (Math.random() - 0.5) * 150 + 'px');
+                p.style.setProperty('--rot', (Math.random() - 0.5) * 180 + 'deg');
+                zone.appendChild(p); setTimeout(() => p.remove(), 500);
+            }
+        }
+
+        function checkWaveClear() {
+            if (wordsSpawnedInWave >= wordsToBeatForWave && shooterEnemies.length === 0 && currentHealth > 0) {
+                triggerIntermission();
             }
         }
 
@@ -473,21 +450,17 @@
             if (!inIntermission) {
                 if (timestamp - lastSpawnTime > spawnInterval) { spawnShooterEnemy(); lastSpawnTime = timestamp; }
                 const zh = document.getElementById('shooter-zone').clientHeight;
+                
                 for (let i = shooterEnemies.length - 1; i >= 0; i--) {
                     let enemy = shooterEnemies[i]; enemy.y += enemy.speed; enemy.el.style.top = enemy.y + 'px';
                     if (enemy.y + enemy.el.clientHeight >= zh) { 
-                        takeDamage(enemy.text); 
-                        enemy.el.remove(); 
+                        takeDamage(enemy.text); enemy.el.remove(); 
                         if (activeTarget === enemy) activeTarget = null; 
                         shooterEnemies.splice(i, 1); 
-                        
-                        if (enemy.isBoss) { 
-                            // Check if no more boss chunks left
-                            let bossChunksLeft = shooterEnemies.filter(e => e.isBoss).length;
-                            if (bossChunksLeft === 0) { bossActive = false; triggerIntermission(); }
-                        } 
+                        checkWaveClear();
                     }
                 }
+                
                 let mins = (timestamp - waveStartTime) / 60000;
                 if (mins > 0.05 && waveKeystrokes > 0) document.getElementById('sh-kpm-text').innerText = Math.round((waveKeystrokes / 5) / mins);
             }
@@ -516,40 +489,34 @@
                 updateEnemyDOM(enemy); enemy.el.style.backgroundColor = "rgba(59, 130, 246, 0.3)"; 
                 setTimeout(() => { if(enemy) enemy.el.style.backgroundColor = "var(--bg-main)"; }, 150);
             } else {
-                enemy.el.remove(); 
-                shooterEnemies = shooterEnemies.filter(e => e !== enemy); 
-                let wasBoss = enemy.isBoss; 
+                enemy.el.remove(); shooterEnemies = shooterEnemies.filter(e => e !== enemy); 
                 if (activeTarget === enemy) activeTarget = null;
-                
-                if (wasBoss) { 
-                    let bossChunksLeft = shooterEnemies.filter(e => e.isBoss).length;
-                    if(bossChunksLeft === 0) { bossActive = false; triggerIntermission(); }
-                } else { 
-                    wordsDefeatedInWave++; 
-                    if (wordsDefeatedInWave >= wordsToBeatForWave) triggerIntermission(); 
-                }
+                wordsDefeatedTotal++;
+                checkWaveClear();
             }
         }
 
         function processShooterChar(char) {
             waveKeystrokes++;
             if (activeTarget) {
+                // ABORT TARGET MECHANIC: Tekan Spasi untuk membatalkan target jika Spasi bukan bagian dari kata
+                if (char === ' ' && activeTarget.untyped[0] !== ' ') {
+                    activeTarget.el.classList.remove('targeted'); activeTarget.typed = ''; activeTarget.untyped = activeTarget.text;
+                    updateEnemyDOM(activeTarget); activeTarget = null; return;
+                }
+
                 if (activeTarget.untyped[0] === char) {
                     activeTarget.typed += activeTarget.untyped[0]; activeTarget.untyped = activeTarget.untyped.substring(1); updateEnemyDOM(activeTarget);
-                    if (activeTarget.untyped.length === 0) {
-                        destroyEnemy(activeTarget, activeTarget.hp > 1);
-                    }
+                    if (activeTarget.untyped.length === 0) destroyEnemy(activeTarget, activeTarget.hp > 1);
                 } else { activeTarget.el.style.backgroundColor = "var(--extra-bg)"; setTimeout(() => { if(activeTarget) activeTarget.el.style.backgroundColor = "var(--bg-main)"; }, 100); }
             } else {
-                // TARGET LOCKING CERDAS: Prioritaskan monster yang Y-nya paling besar (paling bawah/dekat ke dasar)
+                // SMART TARGETING: Prioritaskan musuh yang posisinya paling bawah (Y terbesar)
                 let sortedEnemies = shooterEnemies.slice().sort((a, b) => b.y - a.y);
                 let target = sortedEnemies.find(w => w.untyped[0] === char);
                 
                 if (target) {
                     activeTarget = target; activeTarget.el.classList.add('targeted'); activeTarget.typed += activeTarget.untyped[0]; activeTarget.untyped = activeTarget.untyped.substring(1); updateEnemyDOM(activeTarget);
-                    if (activeTarget.untyped.length === 0) {
-                        destroyEnemy(activeTarget, activeTarget.hp > 1);
-                    }
+                    if (activeTarget.untyped.length === 0) destroyEnemy(activeTarget, activeTarget.hp > 1);
                 }
             }
         }
@@ -578,10 +545,18 @@
 
         function advanceToNextWave() {
             shooterWave++; document.getElementById('sh-wave-text').innerHTML = `${shooterWave}<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span>`;
-            wordsDefeatedInWave = 0; wordsToBeatForWave = 10 + Math.floor(shooterWave * 1.5); // Skala diatur normal
+            wordsSpawnedInWave = 0;
             
-            if (shooterWave % 5 === 0) { isBossWave = true; spawnInterval = 999999; } 
-            else { isBossWave = false; spawnInterval = Math.max(800, 2000 - (shooterWave * 60)); } // KPM Target ~90 
+            if (shooterWave % 5 === 0) { 
+                isBossWave = true; 
+                bossWordsQueue = getShooterWords(true);
+                wordsToBeatForWave = bossWordsQueue.length;
+                spawnInterval = 300; // Cepat agar formasi baris boss segera terbentuk
+            } else { 
+                isBossWave = false; 
+                wordsToBeatForWave = 10 + Math.floor(shooterWave * 1.5);
+                spawnInterval = Math.max(500, 2000 - (shooterWave * 60)); // Waktu spawn stabil
+            }
             
             inIntermission = false; startWaveTimer(); sInput.focus();
         }
@@ -600,10 +575,8 @@
             
             const hl = document.getElementById('wave-history-list'); hl.innerHTML = '';
             waveKpmHistory.forEach(h => { let d = document.createElement('div'); d.className = 'history-item'; d.innerHTML = `<span>Wave ${h.wave}</span><strong>${h.kpm} KPM</strong>`; hl.appendChild(d); });
-            
-            let td = waveKpmHistory.reduce((acc, curr) => { let tb = 10 + Math.floor(curr.wave * 1.5); if (curr.wave % 5 === 0) tb = 1; return acc + tb; }, 0) + wordsDefeatedInWave;
 
-            document.getElementById('wpm').innerText = avg; document.getElementById('stat-total-letters').innerText = totalShooterKeystrokes; document.getElementById('stat-words').innerText = td;
+            document.getElementById('wpm').innerText = avg; document.getElementById('stat-total-letters').innerText = totalShooterKeystrokes; document.getElementById('stat-words').innerText = wordsDefeatedTotal;
             document.getElementById('shooter-container').classList.add('hidden'); document.getElementById('result-container').classList.remove('hidden');
         }
     </script>
