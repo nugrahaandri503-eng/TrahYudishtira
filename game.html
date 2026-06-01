@@ -38,26 +38,26 @@
         .mode-best-badge { display: inline-flex; align-items: center; margin-top: 10px; font-size: 0.9rem; color: var(--gold-text); background: var(--panel-bg); padding: 8px 15px; border-radius: 8px; border: 1px solid var(--gold-border); font-weight: 600; width: fit-content; }
         
         .btn-grid { display: flex; flex-direction: column; gap: 15px; }
-        .menu-btn { background: rgba(244, 63, 94, 0.05); border: 1px solid rgba(244, 63, 94, 0.4); color: var(--text-main); padding: 25px; border-radius: 16px; font-size: 1.1rem; text-align: left; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .menu-btn { background: rgba(244, 63, 94, 0.05); border: 1px solid rgba(244, 63, 94, 0.4); color: var(--text-main); padding: 25px; border-radius: 16px; font-size: 1.1rem; text-align: left; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; user-select: none; -webkit-user-select: none; }
         .menu-btn:hover { background: var(--extra-bg); border-color: var(--extra); transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.3); }
-        .menu-btn strong { font-size: 1.5rem; color: var(--extra); margin-bottom: 6px; font-weight: 800; }
-        .menu-btn span { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+        .menu-btn strong { font-size: 1.5rem; color: var(--extra); margin-bottom: 6px; font-weight: 800; pointer-events: none; }
+        .menu-btn span { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; pointer-events: none; }
 
-        .switch-app-btn { background: var(--primary); color: #000; text-align: center; justify-content: center; align-items: center; font-weight: 800; border: none; padding: 15px; font-size: 1.1rem; box-shadow: 0 0 15px var(--primary-glow);}
+        .switch-app-btn { background: var(--primary); color: #000; text-align: center; justify-content: center; align-items: center; font-weight: 800; border: none; padding: 15px; font-size: 1.1rem; box-shadow: 0 0 15px var(--primary-glow); user-select: none;}
         .switch-app-btn:hover { background: #0284c7; color: #fff; transform: scale(1.02); }
 
-        .control-btn { background: var(--panel-bg); color: var(--text-main); border: 1px solid var(--border-strong); padding: 10px 16px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.2s; display: flex; justify-content: center; align-items: center; font-size: 0.95rem; gap: 5px;}
+        .control-btn { background: var(--panel-bg); color: var(--text-main); border: 1px solid var(--border-strong); padding: 10px 16px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.2s; display: flex; justify-content: center; align-items: center; font-size: 0.95rem; gap: 5px; user-select: none;}
         .control-btn:hover { background: var(--primary-trans); transform: scale(1.05); }
 
         /* === LAYOUT SHOOTER ZONE === */
         .shooter-layout { display: flex; gap: 20px; height: 75vh; min-height: 600px; width: 100%; }
-        .shooter-sidebar { flex: 0 0 220px; background: var(--panel-bg); border-radius: 16px; padding: 25px 20px; display: flex; flex-direction: column; gap: 20px; border: 1px solid var(--border-strong); box-shadow: inset 0 0 20px rgba(0,0,0,0.2); }
+        .shooter-sidebar { flex: 0 0 240px; background: var(--panel-bg); border-radius: 16px; padding: 25px 20px; display: flex; flex-direction: column; gap: 20px; border: 1px solid var(--border-strong); box-shadow: inset 0 0 20px rgba(0,0,0,0.2); }
         
         #shooter-zone { flex: 1; position: relative; height: 100%; overflow: hidden; border: 2px solid var(--border-strong); border-radius: 16px; background: var(--panel-bg); cursor: pointer; box-shadow: inset 0 0 20px rgba(0,0,0,0.2); background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px); background-size: 20px 20px; }
         
         .falling-word { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 15px; background: var(--bg-main); border: 2px solid var(--border-strong); border-radius: 12px; font-family: 'Consolas', monospace; font-size: 1.15rem; font-weight: 600; color: var(--text-main); box-shadow: 0 5px 15px rgba(0,0,0,0.3); white-space: pre-wrap; max-width: 90%; transition: border-color 0.1s, background-color 0.15s; }
         
-        /* Armor Styling */
         .falling-word.armored { border: 3px solid #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); } 
         .armor-badge { color: #60a5fa; font-weight: 800; font-size: 0.9rem; margin-left: 5px; }
         
@@ -67,23 +67,38 @@
         .fw-typed { color: var(--correct); text-shadow: 0 0 5px var(--correct); }
         .fw-untyped { color: var(--text-main); }
         
-        /* === NEW HEALTH BAR & ANIMATIONS === */
+        /* === SCORE & HEALTH UI === */
+        .stat-box { display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.2); border: 1px solid var(--border-strong); border-radius: 12px; padding: 10px; }
+        .stat-label { font-weight: 800; font-size: 0.85rem; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase;}
+        .stat-val-kpm { font-size: 2.3rem; color: var(--correct); font-weight: 800; line-height: 1; text-shadow: 0 0 10px rgba(52, 211, 153, 0.3);}
+        .stat-val-score { font-size: 1.8rem; color: var(--primary); font-weight: 800; line-height: 1; }
+        .stat-val-wave { font-size: 2.2rem; color: var(--text-main); font-weight: 800; line-height: 1;}
+        
+        /* Multiplier UI */
+        .multiplier-box { color: var(--gold-text); font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 5px; margin-bottom: 2px; }
+        .mult-bar-wrapper { width: 85%; height: 4px; background: rgba(0,0,0,0.4); border-radius: 2px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .mult-bar-fill { height: 100%; width: 0%; background: var(--primary); transition: width 0.08s linear; box-shadow: 0 0 8px var(--primary); }
+
         .health-wrapper { width: 100%; height: 25px; background: rgba(0,0,0,0.5); border-radius: 12px; overflow: hidden; border: 2px solid var(--border-strong); position: relative; margin-top: 5px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);}
         .health-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #f43f5e, #fb7185); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
         .health-text { position: absolute; width: 100%; text-align: center; top: 0; left: 0; font-size: 0.9rem; font-weight: 800; color: white; line-height: 25px; text-shadow: 1px 1px 2px black; }
         
         .damage-shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
         @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(6px, 0, 0); } }
-        
         .screen-flash { animation: flashRed 0.3s ease-out; }
         @keyframes flashRed { 0% { box-shadow: inset 0 0 100px var(--extra); border-color: var(--extra); } 100% { box-shadow: inset 0 0 20px rgba(0,0,0,0.2); border-color: var(--border-strong); } }
 
         /* Colorful Particle Explosion */
-        .particle { position: absolute; font-family: 'Consolas', monospace; font-size: 1.4rem; font-weight: 800; pointer-events: none; animation: explode 0.5s forwards ease-out; z-index: 20;}
-        @keyframes explode { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; } }
+        .particle { position: absolute; font-family: 'Consolas', monospace; font-size: 1.4rem; font-weight: 800; pointer-events: none; animation: explode 0.6s forwards ease-out; z-index: 20;}
+        .particle-shape { position: absolute; pointer-events: none; animation: explode 0.6s forwards ease-out; z-index: 20; background-color: var(--correct); }
+        @keyframes explode { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(var(--sc)) rotate(var(--rot)); opacity: 0; } }
+
+        /* === FLOATING SCORE TEXT ANIMATION === */
+        .floating-score { position: absolute; font-weight: 800; font-size: 1.8rem; pointer-events: none; animation: floatUpScore 0.8s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28); z-index: 30; }
+        @keyframes floatUpScore { 0% { transform: translateY(0) scale(0.6); opacity: 0; } 20% { opacity: 1; transform: translateY(-25px) scale(1.1); } 100% { transform: translateY(-70px) scale(1); opacity: 0; } }
 
         /* OVERLAYS */
-        .intermission-overlay, .pause-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 50; border-radius: 14px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .intermission-overlay, .pause-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 50; border-radius: 14px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .intermission-overlay.show, .pause-overlay.show { opacity: 1; pointer-events: all; }
         .int-title { font-size: 3rem; font-weight: 800; color: var(--primary); margin: 0; text-shadow: 0 0 20px var(--primary-glow); text-align: center;}
         .int-kpm { font-size: 1.5rem; color: var(--correct); margin: 10px 0; font-weight: 600;}
@@ -115,13 +130,18 @@
         button.secondary-btn { background: var(--panel-bg); border: 1px solid var(--border-strong); color: var(--text-main); box-shadow: none; font-weight: 600; }
         button.secondary-btn:hover { background: var(--primary-trans); }
 
+        .settings-panel { display: flex; justify-content: center; gap: 15px; background: var(--panel-bg); padding: 12px; border-radius: 16px; flex-wrap: wrap; }
+        .setting-group { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);}
+        .setting-group select { background: var(--bg-main); border: 1px solid var(--border-strong); color: var(--text-main); padding: 8px 12px; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 600; outline: none; cursor: pointer; }
+
         @media (max-width: 768px) {
             .container { padding: 25px 20px; border-radius: 20px; }
             .shooter-layout { flex-direction: column; height: 85vh; }
             .shooter-sidebar { flex: 0 0 auto; flex-direction: row; flex-wrap: wrap; padding: 15px; justify-content: space-between; align-items: center; gap: 10px;}
-            .shooter-sidebar > div { display: flex; flex-direction: column; align-items: center; }
+            .shooter-sidebar > div { width: 48%; }
+            .shooter-sidebar .stat-box { padding: 5px; }
             .shooter-sidebar [id^="sh-"] { font-size: 1.5rem !important; }
-            .shooter-sidebar > div[style*="margin-top"] { margin-top: 0 !important; width: 100%; }
+            .shooter-sidebar > div[style*="margin-top"] { margin-top: 0 !important; width: 100%; flex-direction: row !important; }
             .vic-title { font-size: 3rem; }
         }
     </style>
@@ -133,12 +153,13 @@
             <h1>Typing Defender 🚀</h1>
             <p>Survival Mengetik Profesional</p>
             <div class="mode-best-badge" id="best-mode-5">🌊 Best Wave: 0</div>
+            <div class="mode-best-badge" id="best-score-5" style="border-color:var(--primary); color:var(--text-main); background:var(--primary-trans);">🏆 Highscore: 0</div>
         </div>
 
         <div class="btn-grid">
-            <button class="menu-btn" onclick="document.getElementById('theme-container').classList.remove('hidden'); document.getElementById('menu-container').classList.add('hidden');">
+            <button class="menu-btn" onclick="openThemeSelection()">
                 <strong>⚔️ Mulai Pertarungan!</strong>
-                <span>Survival 20 Wave. Target ~90 KPM. Ganti target dengan [Spasi]. Boss Paragraf Horizontal!</span>
+                <span>Survival 20 Wave. Target ~90 KPM. Ganti target dengan [Spasi]. Tembok Boss Horizontal & Multiplier Bar!</span>
             </button>
             <button class="menu-btn switch-app-btn" onclick="window.location.href='index.html'">
                 📖 Pindah ke Mode Latihan Klasik
@@ -149,15 +170,15 @@
     <div class="container hidden" id="theme-container">
         <div class="menu-header"><h1>Pilih Kategori Teks</h1></div>
         <div class="btn-grid">
-            <button class="menu-btn" onclick="selectTheme('perkapalan')">
+            <button class="menu-btn" onclick="startShooterGame('perkapalan')">
                 <strong>🚢 Teknik Perkapalan</strong>
                 <span>Hidrostatika, CFD, dan mekanika fluida.</span>
             </button>
-            <button class="menu-btn" onclick="selectTheme('komunikasi')">
+            <button class="menu-btn" onclick="startShooterGame('komunikasi')">
                 <strong>📝 Ilmu Komunikasi</strong>
                 <span>Kalimat efektif dan literasi digital.</span>
             </button>
-            <button class="menu-btn" style="border-color:var(--gold-border); background:var(--gold-bg);" onclick="selectTheme('campur')">
+            <button class="menu-btn" style="border-color:var(--gold-border); background:var(--gold-bg);" onclick="startShooterGame('campur')">
                 <strong style="color:var(--gold-text);">🎲 Acak (Sangat Sulit)</strong>
                 <span>Kombinasi kata kasual, UTBK, dan KTI.</span>
             </button>
@@ -169,16 +190,24 @@
         <div class="shooter-layout">
             
             <div class="shooter-sidebar">
-                <div>
-                    <div style="font-weight: 800; color: var(--primary); font-size: 1.1rem; letter-spacing: 1px;">WAVE</div>
-                    <div id="sh-wave-text" style="font-size: 2.8rem; color: var(--text-main); font-weight: 800; line-height: 1;">1<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span></div>
+                <div class="stat-box">
+                    <div class="stat-label">WAVE</div>
+                    <div id="sh-wave-text" class="stat-val-wave">1<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span></div>
                 </div>
-                <div>
-                    <div style="font-weight: 800; color: var(--correct); font-size: 1.1rem; letter-spacing: 1px;">KPM</div>
-                    <div id="sh-kpm-text" style="font-size: 2.8rem; color: var(--text-main); font-weight: 800; line-height: 1;">0</div>
+                <div class="stat-box">
+                    <div class="stat-label" style="color: var(--correct);">KPM RATA-RATA</div>
+                    <div id="sh-kpm-text" class="stat-val-kpm">0</div>
+                </div>
+                <div class="stat-box" style="border-color: var(--primary);">
+                    <div class="stat-label" style="color: var(--primary);">SCORE</div>
+                    <div id="sh-score-text" class="stat-val-score">0</div>
+                    <div class="multiplier-box" id="sh-multiplier">x1</div>
+                    <div class="mult-bar-wrapper">
+                        <div class="mult-bar-fill" id="mult-bar-fill"></div>
+                    </div>
                 </div>
                 <div id="health-box" style="width: 100%;">
-                    <div style="font-weight: 800; color: var(--extra); font-size: 1.1rem; letter-spacing: 1px; text-align: center;">INTEGRITAS</div>
+                    <div class="stat-label" style="color: var(--extra); text-align: center;">INTEGRITAS (NYAWA)</div>
                     <div class="health-wrapper">
                         <div class="health-fill" id="health-fill-bar"></div>
                         <div class="health-text" id="health-text-val">100%</div>
@@ -186,7 +215,6 @@
                 </div>
                 <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; width: 100%;">
                     <button class="control-btn" style="padding: 15px;" onclick="togglePause()" id="pause-btn">⏸️ Pause</button>
-                    <button class="control-btn" style="padding: 15px; border-color: var(--extra-bg); color: var(--extra);" onclick="returnToMenu()">⏹️ Keluar</button>
                 </div>
             </div>
 
@@ -198,8 +226,37 @@
                 </div>
                 
                 <div class="pause-overlay" id="pause-screen">
-                    <h2 class="int-title" style="color: var(--text-main);">GAME PAUSED</h2>
-                    <button class="main-btn" style="width: 200px; margin-top: 30px;" onclick="togglePause()">Lanjutkan ▶️</button>
+                    <h2 class="int-title" style="color: var(--text-main); margin-bottom: 20px;">GAME PAUSED</h2>
+                    <div style="display: flex; flex-direction: column; gap: 12px; width: 260px;">
+                        <button class="main-btn" onclick="togglePause()">Lanjutkan ▶️</button>
+                        <button class="main-btn secondary-btn" onclick="restartCurrentSession()">🔄 Ulangi Pertarungan</button>
+                        
+                        <div class="settings-panel" style="margin-bottom: 0; padding: 15px; flex-direction: column; gap: 10px; align-items: stretch;">
+                            <div class="setting-group" style="justify-content: space-between;">
+                                <label>🎨 Tema:</label>
+                                <select id="pause-theme-selector" onchange="changeTheme(this.value); syncSelectors();">
+                                    <option value="slate">🌙 Slate</option>
+                                    <option value="kawaii">🌸 Kawaii Pink</option>
+                                    <option value="cyberpunk">🌃 Cyberpunk</option>
+                                    <option value="ocean">🌊 Deep Ocean</option>
+                                    <option value="matcha">🍵 Matcha Dark</option>
+                                    <option value="hacker">💻 Hacker</option>
+                                </select>
+                            </div>
+                            <div class="setting-group" style="justify-content: space-between;">
+                                <label>🔊 Suara:</label>
+                                <select id="pause-sound-selector" onchange="changeSound(this.value); syncSelectors();">
+                                    <option value="thock">🎹 Thock</option>
+                                    <option value="clicky">🖱️ Clicky</option>
+                                    <option value="bubble">🫧 Bubble</option>
+                                    <option value="typewriter">📠 Type</option>
+                                    <option value="off">🔇 Mati</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button class="main-btn secondary-btn" style="border-color: var(--extra-bg); color: var(--extra); margin-top: 5px;" onclick="returnToMenu()">⏹️ Menu Utama</button>
+                    </div>
                 </div>
 
                 <div class="victory-overlay" id="victory-screen">
@@ -211,7 +268,7 @@
         </div>
 
         <div style="margin-top:15px; text-align:center; color:var(--text-muted); font-size:0.9rem;">
-            *Tekan <b>[Spasi]</b> untuk ganti kata/target.<br>Kata <b>[2x]</b> adalah Armor, ketik sampai habis lalu ketik sekali lagi!
+            *Tekan <b>[Spasi]</b> untuk GANTI TARGET kata.<br>Kata <b>[2x]</b> adalah Armor, ketik sampai habis lalu ketik sekali lagi!
         </div>
         <input type="text" id="shooter-input" style="opacity:0; position:absolute; top:-1000px;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
     </div>
@@ -219,7 +276,8 @@
     <div class="container hidden" id="result-container">
         <div class="result-box">
             <h2 id="result-title">Selesai!</h2>
-            <p class="wpm-score"><span id="wpm">0</span> KPM</p>
+            <p class="wpm-score" style="font-size: 3.5rem; margin-bottom: 5px;">Score: <span id="final-score" style="color:var(--text-main);">0</span></p>
+            <p style="font-size: 1.5rem; color: var(--correct); font-weight: 800; margin-top:0; margin-bottom: 20px;">Avg: <span id="wpm">0</span> KPM</p>
             <div class="stats-grid">
                 <div><span class="text-muted">Status</span> <span class="text-yellow" id="stat-1">GAME OVER</span></div>
                 <div><span class="text-muted">Bertahan</span> <span class="text-white" id="stat-2">0s</span></div>
@@ -232,17 +290,30 @@
                 <div class="history-list" id="wave-history-list"></div>
             </div>
             <div class="btn-group">
-                <button class="main-btn" onclick="selectTheme(currentTheme)">Ulangi Pertarungan</button>
+                <button class="main-btn" onclick="startShooterGame(currentTheme)">Ulangi Pertarungan</button>
                 <button class="main-btn secondary-btn" onclick="returnToMenu()">Menu Utama</button>
             </div>
         </div>
     </div>
 
-    <script src="referensi.js"></script>
+    <script>
+        // DATA REFERENSI LANGSUNG DI-INJECT KE SINI
+        const dailyWords = ["yang", "dan", "di", "ke", "dari", "ini", "itu", "untuk", "pada", "dengan", "adalah", "sebagai", "tidak", "bisa", "akan", "tapi", "karena", "kalau", "sudah", "lagi", "lebih", "sangat", "paling", "hanya", "juga", "atau", "saat", "lalu", "biar", "terus", "sambil", "memang", "cepat", "lambat", "baik", "buruk", "baru", "lama", "jauh", "dekat", "mudah", "susah", "banyak", "sedikit", "besar", "kecil", "bagus", "keren", "santai", "sibuk", "makan", "minum", "tidur", "pergi", "pulang", "jalan", "lari", "bikin", "buat", "pakai", "ambil", "kasih", "bawa", "cari", "dapat", "coba", "mulai", "selesai", "paham", "ngerti", "suka", "benci", "mau", "ingin", "jangan", "mari", "ayo", "tolong", "maaf", "terima", "sama", "beda", "benar", "salah", "mungkin", "pasti", "selalu", "kadang", "belum", "sekarang", "nanti", "besok", "kemarin", "hari", "malam", "pagi", "sore", "iya", "enggak", "oke", "sip", "dong", "deh", "nih", "tuh", "kan", "kok", "sih", "aja", "banget", "lumayan", "biasa", "luar", "dalam", "atas", "bawah", "depan", "kiri", "kanan", "sini", "situ", "sana", "mana", "apa", "siapa", "mengapa", "kenapa", "gimana", "kapan", "berapa"];
+        const utbkWords = ["andal", "antre", "asas", "autisme", "balsam", "batalion", "baterai", "bolpoin", "bujur", "cenderamata", "cengkeram", "detail", "diagnosis", "diperbarui", "ekstrem", "elite", "embus", "fondasi", "frekuensi", "genius", "gua", "gubuk", "haktul", "hafal", "hierarki", "higienis", "imbau", "indra", "isap", "istri", "jadwal", "jenazah", "jenderal", "kacamata", "karier", "kategori", "khatulistiwa", "khawatir", "kiai", "kualitas", "kuitansi", "legenda", "lembap", "lubang", "maaf", "makhluk", "manajemen", "mangkuk", "mantra", "massal", "memercayai", "memesona", "memopulerkan", "mengubah", "menyukseskan", "miliar", "misi", "mosaik", "napas", "narasumber", "nasihat", "objek", "omzet", "paham", "pascapanen", "peka", "pembaruan", "penasihat", "pertanggungjawaban", "piawai", "praktik", "provinsi", "putra", "ramai", "rapor", "relaksasi", "respons", "risiko", "roboh", "saksama", "samudra", "sanksi", "saraf", "sekadar", "sekretaris", "silakan", "sistem", "sportif", "standardisasi", "subjek", "survei", "sutradara", "tampak", "tauladan", "telantar", "terampil", "ubah", "utang", "wujud", "zaman", "zamrud", "kedaluwarsa", "mencolok", "memunafikkan", "apotek", "atlet", "bus", "berpikir", "cabai", "capai", "cedera", "cendekia", "cendekiawan", "cengkerama", "cengkih", "cinderamata", "cokelat", "elips", "emas", "empas", "gaib", "geiser", "gips", "grup", "gudeg", "insaf", "masjid", "tripleks"];
+        const ktiPerkapalan = ["Penelitian ini mengkaji pengaruh modifikasi bentuk haluan terhadap nilai hambatan total kapal menggunakan metode Computational Fluid Dynamics pada berbagai variasi sarat air.","Desain lines plan merupakan langkah paling krusial sebelum melanjutkan proses pemodelan lambung 3D di perangkat lunak Maxsurf.","Perhitungan perubahan sarat haluan dan buritan akibat penambahan bobot muatan dianalisis secara akurat menggunakan prinsip keseimbangan hidrostatika dasar.","Fungsi redaman pada model matematika stabilitas kapal sering direpresentasikan oleh eksponensial e pangkat negatif dikali t dalam penyelesaian persamaan diferensialnya.","Penerapan teknologi smart bilge system pada ruang mesin dirancang untuk memitigasi risiko kebocoran dengan tingkat akurasi sensor mendeteksi anomali secara otomatis.","Distribusi tegangan pada sekat tubrukan dievaluasi secara berkala guna mengantisipasi kegagalan lelah material akibat beban siklis gelombang laut.","Validasi komputasi hidrodinamika dilakukan melalui komparasi langsung dengan data empiris yang diperoleh dari serangkaian pengujian di tangki tarik.","Simulasi aliran fluida berbasis dinamika komputasi diaplikasikan guna memprediksi efisiensi kinerja propeller di wilayah perairan dangkal.","Propeller baling-baling merupakan instrumen paling esensial dan kompleks dalam sistem propulsi kapal.","Propeller bertugas secara fundamental merubah energi rotasi mekanik dari poros mesin utama menjadi gaya dorong hidrodinamik yang melawan resistensi air.","Penelitian ekstensif terhadap propeller tipe Kaplan-series dan B-series menyoroti pengaruh parameter geometri mikroskopis.","Modifikasi ini berdampak terhadap efisiensi operasional dan perpanjangan usia lelah atau fatigue life material yang sangat krusial.","Desain propeller khususnya pada aplikasi kapal selam militer maupun kapal berkinerja tinggi komersial melibatkan pengaturan variabel kompleks.","Variabel tersebut saling terkait seperti rasio luas daun, rasio kisar, pengaturan kecepatan putar majuan, dan kalkulasi gaya dorong optimal.","Modifikasi geometri spesifik pada bilah seperti penyesuaian sudut Rake dan variasi jumlah daun baling-baling secara empiris menentukan performa dinamis kapal.","Analisis kinerja baling-baling ini sering kali melibatkan metode Computational Fluid Dynamics CFD sebuah pilar utama dalam mekanika fluida numerik.","Dalam sebuah studi eksperimental yang mengevaluasi performa propeller dengan variasi jumlah baling-baling 6 8 dan 10 daun.","Objek propeller dioperasikan pada kecepatan translasi 4 meter per detik dengan perputaran stabil di angka 500 RPM.","Pengujian numerik ini mengungkapkan bahwa interaksi aliran fluida rotasional memicu gradien perbedaan tekanan yang ekstrem.","Analisis elemen hingga atau Finite Element Method mengkaji konsentrasi tegangan stress pada propeller Kapal Sabuk Nusantara.","Analisis mengindikasikan bahwa tegangan von-Mises maksimum menyentuh angka 87 MPa dengan deformasi absolut material.","Batas kerusakan diperkirakan mencapai ekuivalensi dengan estimasi umur ketahanan material operasional selama 32 tahun.","Beban operasional yang tinggi tanpa perhitungan struktural presisi berisiko besar memicu kegagalan material.","Kerusakan struktural berwujud retak mikro yang berujung pada patah lelah atau fatigue crack pada poros dan blade propeller di tengah laut."];
+        const ktiKomunikasi = ["Penelitian ini menerapkan metode analisis wacana kritis guna membongkar konstruksi representasi gender dalam pemberitaan media massa daring.","Efektivitas kampanye literasi digital diukur melalui perubahan tingkat kognisi dan perilaku bermedia sosial secara bijak pada kalangan remaja.","Dinamika komunikasi kelompok dalam ruang diskusi virtual memengaruhi proses pengambilan keputusan secara kolektif di era disrupsi informasi.","Kajian semiotika dilakukan terhadap elemen visual dan tekstual iklan komersial guna memahami ideologi tersembunyi yang ditransmisikan kepada audiens.","Keberadaan leksikon baku tidak bermakna apabila tidak didukung oleh struktur sintaksis yang logis hemat dan terhindar dari ambiguitas semantik.","Kalimat efektif dalam penulisan Karya Tulis Ilmiah memiliki serangkaian aturan struktural yang sangat ketat.","Berdasarkan pedoman akademik draf KTI harus bebas dari pleonasme kontaminasi struktur dan ambiguitas penunjukan subjek.","Analisis linguistik menunjukkan bahwa efektivitas sering menurun akibat penggunaan kata bersinonim secara berurutan.","Penerapan struktur ejaan yang tidak baku serta penyalahgunaan partikel preposisional merupakan kontributor utama inefisiensi teks.","Contoh penyalahgunaan preposisi adalah penggunaan kata daripada untuk menunjukkan makna kepemilikan material.","Padahal dalam tata bahasa baku Indonesia preposisi daripada secara eksklusif hanya digunakan sebagai partikel perbandingan.","Penempatan preposisi di awal kalimat juga merupakan kesalahan umum karena dapat menghilangkan fungsi subjek utama.","Konstruksi tersebut mengaburkan subjek dan predikat sehingga harus direkonstruksi menjadi kalimat aktif yang tegas.","Dalam merancang algoritma teks batasan sintaksis KTI direpresentasikan sebagai konstrain fungsional pada modul pengurai bahasa.","Algoritma dilarang menghasilkan frasa repetitif dan wajib mematuhi hierarki subjek predikat objek dan keterangan secara mutlak.","Aturan ini memastikan aliran ide terkomputasi tetap memenuhi derajat formalitas tertinggi layaknya tulisan seorang akademisi."];
+    </script>
 
     <script>
         let audioCtx;
-        function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+        function initAudio() { 
+            try {
+                if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)(); 
+                }
+            } catch (e) { console.log("Audio API not supported"); }
+        }
+        
         function playTypingSound() {
             let cs = localStorage.getItem('typing_sound') || 'thock'; if(cs==='off' || !audioCtx) return;
             if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -261,33 +332,107 @@
         let shooterWave = 1; let maxWaves = 20; 
         
         let maxHealth = 100; let currentHealth = 100;
+        let score = 0; let multiplier = 1; let comboCount = 0; 
         
-        // LIMITER PER WAVE
         let wordsSpawnedInWave = 0; let wordsToBeatForWave = 10;
-        let bossWordsQueue = []; // Untuk menyimpan kata-kata boss yang akan di-spawn
-
-        let isBossWave = false; let bossActive = false; let inIntermission = false;
+        let bossWordsQueue = []; let isBossWave = false; let bossActive = false; let inIntermission = false;
         let spawnInterval = 2000; let lastSpawnTime = 0; let pauseTimeDiff = 0;
         let waveStartTime = 0; let waveKeystrokes = 0; let waveKpmHistory = []; 
         let totalShooterKeystrokes = 0; let totalShooterTimeMs = 0; let wordsDefeatedTotal = 0;
 
-        function loadHighScores() { document.getElementById('best-mode-5').innerText = `🌊 Best Wave: ${localStorage.getItem('bestWave_mode5') || 0}`; }
-        function saveBestWave(wave) { let c = parseInt(localStorage.getItem('bestWave_mode5') || 0); if (wave > c) localStorage.setItem('bestWave_mode5', wave); loadHighScores(); }
-        window.onload = function() { let th = localStorage.getItem('typing_theme') || 'slate'; if(th!=='slate') document.documentElement.setAttribute('data-theme', th); loadHighScores(); };
+        // MULTIPLIER TIMING PROGRESS VARIABLES
+        let lastTimestamp = 0;
+        let multiplierTimer = 0;
+
+        // SAFE LOAD PREFERENCES
+        function loadPreferences() {
+            let savedTheme = localStorage.getItem('typing_theme') || 'slate';
+            let savedSound = localStorage.getItem('typing_sound') || 'thock';
+            
+            let pts = document.getElementById('pause-theme-selector'); if(pts) pts.value = savedTheme;
+            let pss = document.getElementById('pause-sound-selector'); if(pss) pss.value = savedSound;
+            
+            changeTheme(savedTheme); currentSound = savedSound;
+        }
+
+        function syncSelectors() {
+            let st = localStorage.getItem('typing_theme') || 'slate';
+            let ss = localStorage.getItem('typing_sound') || 'thock';
+            
+            let pts = document.getElementById('pause-theme-selector'); if(pts) pts.value = st;
+            let pss = document.getElementById('pause-sound-selector'); if(pss) pss.value = ss;
+        }
+
+        function changeTheme(themeName) {
+            if (themeName === 'slate') document.documentElement.removeAttribute('data-theme');
+            else document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('typing_theme', themeName);
+        }
+
+        function changeSound(soundName) {
+            currentSound = soundName; localStorage.setItem('typing_sound', soundName);
+            initAudio(); playTypingSound(); 
+        }
+
+        function loadHighScores() { 
+            document.getElementById('best-mode-5').innerText = `🌊 Best Wave: ${localStorage.getItem('bestWave_mode5') || 0}`; 
+            document.getElementById('best-score-5').innerText = `🏆 Highscore: ${localStorage.getItem('bestScore_mode5') || 0}`;
+        }
+
+        function saveBestWaveAndScore(wave, currentScore) { 
+            let cw = parseInt(localStorage.getItem('bestWave_mode5') || 0); if (wave > cw) localStorage.setItem('bestWave_mode5', wave); 
+            let cs = parseInt(localStorage.getItem('bestScore_mode5') || 0); if (currentScore > cs) localStorage.setItem('bestScore_mode5', currentScore); 
+            loadHighScores(); 
+        }
+
+        window.onload = function() { loadPreferences(); loadHighScores(); };
 
         function focusInput() { if(!isPaused && !inIntermission) document.getElementById('shooter-input').focus(); }
+
+        function openThemeSelection() {
+            document.getElementById('theme-container').classList.remove('hidden'); 
+            document.getElementById('menu-container').classList.add('hidden');
+        }
 
         function returnToMenu() {
             cancelAnimationFrame(shooterAnimReq); shooterActive = false; isPaused = false;
             document.getElementById('shooter-container').classList.add('hidden'); document.getElementById('result-container').classList.add('hidden');
             document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
             document.getElementById('pause-screen').classList.remove('show');
+            document.getElementById('theme-container').classList.add('hidden');
             document.getElementById('menu-container').classList.remove('hidden'); loadHighScores(); 
         }
 
-        function selectTheme(theme) {
+        function startShooterGame(theme) {
             initAudio(); currentTheme = theme; document.getElementById('theme-container').classList.add('hidden');
+            document.getElementById('result-container').classList.add('hidden');
             document.getElementById('shooter-container').classList.remove('hidden'); resetShooterSetup();
+        }
+
+        function updateScoreUI() {
+            document.getElementById('sh-score-text').innerText = score;
+            document.getElementById('sh-multiplier').innerText = `x${multiplier}`;
+            if (multiplier > 1) {
+                document.getElementById('sh-multiplier').style.color = (multiplier === 5) ? 'var(--extra)' : 'var(--gold-text)';
+            } else {
+                document.getElementById('sh-multiplier').style.color = 'var(--text-muted)';
+            }
+        }
+
+        function breakCombo() {
+            comboCount = 0; multiplier = 1; multiplierTimer = 0; updateScoreUI();
+        }
+
+        function addScore(points) {
+            score += (points * multiplier);
+            comboCount++;
+            multiplierTimer = 0; // Reset countdown bar
+            
+            if (comboCount >= 15 && multiplier < 2) multiplier = 2;
+            if (comboCount >= 30 && multiplier < 3) multiplier = 3;
+            if (comboCount >= 45 && multiplier < 4) multiplier = 4;
+            if (comboCount >= 60 && multiplier < 5) multiplier = 5;
+            updateScoreUI();
         }
 
         function updateHealthUI() {
@@ -303,55 +448,66 @@
         }
 
         function takeDamage(wordString) {
-            let dmg = wordString.length * 2; // 1 huruf = 2% damage
-            currentHealth -= dmg;
-            updateHealthUI();
+            let dmg = wordString.length * 2; 
+            currentHealth -= dmg; breakCombo(); updateHealthUI();
             if (currentHealth <= 0) { recordWaveHistory(); endShooterGame(); }
+        }
+
+        function restartCurrentSession() {
+            cancelAnimationFrame(shooterAnimReq);
+            document.getElementById('pause-screen').classList.remove('show');
+            resetShooterSetup();
         }
 
         function resetShooterSetup() {
             cancelAnimationFrame(shooterAnimReq);
             const zone = document.getElementById('shooter-zone'); zone.querySelectorAll('.falling-word').forEach(e => e.remove());
-            zone.querySelectorAll('.particle').forEach(e => e.remove());
+            zone.querySelectorAll('.particle').forEach(e => e.remove()); zone.querySelectorAll('.floating-score').forEach(e => e.remove());
             document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
             document.getElementById('pause-screen').classList.remove('show');
 
             shooterEnemies = []; activeTarget = null; shooterWave = 1; currentHealth = maxHealth;
+            score = 0; multiplier = 1; comboCount = 0; multiplierTimer = 0; updateScoreUI();
+
             wordsSpawnedInWave = 0; wordsToBeatForWave = 10; bossWordsQueue = [];
             bossActive = false; inIntermission = false; isPaused = false;
             waveKpmHistory = []; totalShooterKeystrokes = 0; totalShooterTimeMs = 0; wordsDefeatedTotal = 0;
             
             document.getElementById('sh-wave-text').innerHTML = `${shooterWave}<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span>`; 
             document.getElementById('sh-kpm-text').innerText = "0";
-            document.getElementById('health-fill-bar').style.width = '100%';
-            document.getElementById('health-text-val').innerText = '100%';
+            document.getElementById('health-fill-bar').style.width = '100%'; document.getElementById('health-text-val').innerText = '100%';
+            document.getElementById('mult-bar-fill').style.width = '0%';
             
             const sInput = document.getElementById('shooter-input'); sInput.value = ''; sInput.disabled = false;
             setTimeout(() => { sInput.focus(); }, 100); shooterActive = true; spawnInterval = 2000;
+            
+            lastTimestamp = 0; // Clear delta timer baseline
             startWaveTimer(); shooterAnimReq = requestAnimationFrame(shooterLoop);
         }
 
-        function startWaveTimer() { waveStartTime = performance.now(); waveKeystrokes = 0; lastSpawnTime = -9999999; }
+        function startWaveTimer() { waveStartTime = performance.now(); waveKeystrokes = 0; lastSpawnTime = -9999999; multiplierTimer = 0; }
 
         function togglePause() {
             if (!shooterActive || inIntermission || currentHealth <= 0) return;
             const pauseBtn = document.getElementById('pause-btn');
             
             if (isPaused) {
-                isPaused = false; lastSpawnTime = performance.now() - pauseTimeDiff; 
-                shooterAnimReq = requestAnimationFrame(shooterLoop);
+                isPaused = false;
+                lastTimestamp = performance.now(); // RESET DELTA TIMING BASELINE SO PROGRESS BAR FREEZES CORRECTLY
                 document.getElementById('pause-screen').classList.remove('show');
                 document.getElementById('shooter-input').focus(); pauseBtn.innerText = "⏸️ Pause";
             } else {
-                isPaused = true; cancelAnimationFrame(shooterAnimReq); pauseTimeDiff = performance.now() - lastSpawnTime;
+                isPaused = true;
                 document.getElementById('pause-screen').classList.add('show'); pauseBtn.innerText = "▶️ Resume";
+                syncSelectors();
             }
         }
 
         function getShooterWords(isBossRequest) {
             let pool = (currentTheme === 'perkapalan') ? ktiPerkapalan : (currentTheme === 'komunikasi') ? ktiKomunikasi : dailyWords.concat(utbkWords); 
             if (isBossRequest) {
-                let fullText = (currentTheme === 'campur') ? shuffleArray(utbkWords).slice(0, 20).join(" ") : shuffleArray(pool).slice(0, 4).join(" ");
+                let sents = 4;
+                let fullText = (currentTheme === 'campur') ? shuffleArray(utbkWords).slice(0, 20).join(" ") : shuffleArray(pool).slice(0, sents).join(" ");
                 let bossWords = fullText.split(" ").filter(w => w.length > 0);
                 return bossWords.map(w => w.replace(/[^a-zA-Z0-9-]/g, ''));
             } else {
@@ -371,7 +527,7 @@
 
         function spawnShooterEnemy() {
             if (!shooterActive || inIntermission || isPaused) return;
-            if (wordsSpawnedInWave >= wordsToBeatForWave) return; // Mencegah spawn berlebih
+            if (wordsSpawnedInWave >= wordsToBeatForWave) return; 
 
             let wordText = ""; let el = document.createElement('div'); 
             let startY = -50; let speed = 0; let hp = 1;
@@ -380,17 +536,11 @@
                 wordText = bossWordsQueue[wordsSpawnedInWave];
                 el.className = 'falling-word boss';
                 
-                // Kalkulasi Tembok Baris Horizontal
-                let columns = 3;
-                let rowIndex = Math.floor(wordsSpawnedInWave / columns);
-                let colIndex = wordsSpawnedInWave % columns;
+                let columns = 3; let rowIndex = Math.floor(wordsSpawnedInWave / columns); let colIndex = wordsSpawnedInWave % columns;
                 
                 document.getElementById('shooter-zone').appendChild(el);
-                let zoneW = document.getElementById('shooter-zone').offsetWidth;
-                let colW = zoneW / columns;
+                let zoneW = document.getElementById('shooter-zone').offsetWidth; let colW = zoneW / columns;
                 
-                // Kata pertama (index 0) akan jatuh duluan, jadi Y-nya di paling bawah (-60).
-                // Kata berikutnya (index besar) akan di-spawn lebih ke atas (-130, -200)
                 let x = (colIndex * colW) + (colW / 2) - (el.offsetWidth / 2);
                 if (x < 10) x = 10; if (x + el.offsetWidth > zoneW - 10) x = zoneW - el.offsetWidth - 10;
                 startY = -80 - (rowIndex * 80);
@@ -415,27 +565,89 @@
                 if(x < 0) x = 0; el.style.left = x + 'px'; el.style.top = startY + 'px';
                 shooterEnemies.push({ el, text: wordText, typed: '', untyped: wordText, y: startY, speed: speed, isBoss: false, hp: hp });
             }
-
             wordsSpawnedInWave++;
         }
 
+        // === THEMATIC FLOATING SCORE TEXT ===
+        function createFloatingScore(el, basePoints) {
+            const zone = document.getElementById('shooter-zone');
+            const rect = el.getBoundingClientRect(); const zoneRect = zone.getBoundingClientRect();
+            
+            const x = rect.left - zoneRect.left + (rect.width / 2);
+            const y = rect.top - zoneRect.top;
+            
+            let fs = document.createElement('div');
+            fs.className = 'floating-score';
+            let earned = basePoints * multiplier;
+            
+            fs.innerText = `+${earned}`;
+            fs.style.left = x + 'px'; fs.style.top = y + 'px';
+            
+            let theme = document.documentElement.getAttribute('data-theme') || 'slate';
+            if (theme === 'slate') {
+                fs.style.color = 'var(--primary)';
+                fs.style.textShadow = '0 0 10px var(--primary-glow)';
+            } else if (theme === 'kawaii') {
+                fs.style.color = '#ec4899';
+                fs.style.textShadow = '0 0 10px rgba(236, 72, 153, 0.4)';
+                fs.innerText = `🌸 +${earned} 💕`;
+            } else if (theme === 'cyberpunk') {
+                fs.style.color = '#00ffff';
+                fs.style.textShadow = '0 0 12px #00ffff, 0 0 20px #ff00ff';
+                fs.style.fontFamily = 'monospace';
+            } else if (theme === 'ocean') {
+                fs.style.color = '#38bdf8';
+                fs.style.textShadow = '0 0 10px #0ea5e9';
+                fs.innerText = `🫧 +${earned}`;
+            } else if (theme === 'matcha') {
+                fs.style.color = '#84cc16';
+                fs.style.textShadow = '0 0 8px rgba(132, 204, 22, 0.4)';
+            } else if (theme === 'hacker') {
+                fs.style.color = '#22c55e';
+                fs.style.textShadow = '0 0 10px #22c55e';
+                fs.style.fontFamily = 'monospace';
+                fs.innerText = `0x${earned.toString(16).toUpperCase()}`; 
+            }
+            
+            zone.appendChild(fs);
+            setTimeout(() => fs.remove(), 800);
+        }
+
+        // === COLORFUL PARTICLE EXPLOSION ===
         function createExplosion(el) {
             const zone = document.getElementById('shooter-zone');
             const rect = el.getBoundingClientRect(); const zoneRect = zone.getBoundingClientRect();
             const x = rect.left - zoneRect.left + (rect.width/2); const y = rect.top - zoneRect.top + (rect.height/2);
-            const text = el.innerText.replace('[2x]', '').trim();
-            const colors = ['#f43f5e', '#38bdf8', '#34d399', '#fbbf24', '#a855f7', '#ec4899'];
+            
+            let theme = document.documentElement.getAttribute('data-theme') || 'slate';
+            let particleArr = []; 
+            
+            if (theme === 'slate') particleArr = el.innerText.replace('[2x]', '').trim().split('');
+            else if (theme === 'kawaii') particleArr = ['❤️', '💖', '✨', '🌸'];
+            else if (theme === 'cyberpunk') particleArr = ['!', '#', '$', '%', '0', '1'];
+            else if (theme === 'ocean') particleArr = ['💧', '🫧', '🌊'];
+            else if (theme === 'matcha') particleArr = ['🍃', '🌿', '🌱'];
+            else if (theme === 'hacker') particleArr = ['0', '1'];
 
-            for(let i=0; i<text.length; i++) {
-                let p = document.createElement('span'); p.className = 'particle'; p.innerText = text[i];
+            const colors = ['#f43f5e', '#38bdf8', '#34d399', '#fbbf24', '#a855f7', '#ec4899'];
+            let count = (theme === 'slate') ? particleArr.length : 8; 
+
+            for(let i=0; i<count; i++) {
+                let p = document.createElement('span'); 
+                p.className = 'particle'; 
+                p.innerText = particleArr[i % particleArr.length];
                 p.style.left = x + 'px'; p.style.top = y + 'px';
-                let randomColor = colors[Math.floor(Math.random() * colors.length)];
-                p.style.color = randomColor; p.style.textShadow = `0 0 10px ${randomColor}`;
+                
+                if (theme === 'slate') {
+                    let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    p.style.color = randomColor; p.style.textShadow = `0 0 10px ${randomColor}`;
+                }
                 
                 p.style.setProperty('--tx', (Math.random() - 0.5) * 150 + 'px');
                 p.style.setProperty('--ty', (Math.random() - 0.5) * 150 + 'px');
                 p.style.setProperty('--rot', (Math.random() - 0.5) * 180 + 'deg');
-                zone.appendChild(p); setTimeout(() => p.remove(), 500);
+                p.style.setProperty('--sc', (Math.random() * 1) + 1); 
+                zone.appendChild(p); setTimeout(() => p.remove(), 600);
             }
         }
 
@@ -446,8 +658,34 @@
         }
 
         function shooterLoop(timestamp) {
-            if (!shooterActive || isPaused) return;
-            if (!inIntermission) {
+            if (!shooterActive) return;
+            if (!lastTimestamp) lastTimestamp = timestamp;
+            let dt = timestamp - lastTimestamp;
+            lastTimestamp = timestamp;
+
+            if (!isPaused && !inIntermission) {
+                // MULTIPLIER TIMING BAR MECHANIC
+                if (multiplier > 1) {
+                    multiplierTimer += dt;
+                    if (multiplierTimer >= 3000) {
+                        multiplier--;
+                        comboCount = (multiplier - 1) * 15; 
+                        updateScoreUI();
+                        multiplierTimer = 0;
+                    }
+                } else {
+                    multiplierTimer = 0;
+                }
+                
+                // Render Multiplier Countdown Bar
+                let barFill = document.getElementById('mult-bar-fill');
+                if (multiplier > 1) {
+                    let pct = Math.max(0, (3000 - multiplierTimer) / 3000 * 100);
+                    barFill.style.width = pct + '%';
+                } else {
+                    barFill.style.width = '0%';
+                }
+
                 if (timestamp - lastSpawnTime > spawnInterval) { spawnShooterEnemy(); lastSpawnTime = timestamp; }
                 const zh = document.getElementById('shooter-zone').clientHeight;
                 
@@ -457,13 +695,17 @@
                         takeDamage(enemy.text); enemy.el.remove(); 
                         if (activeTarget === enemy) activeTarget = null; 
                         shooterEnemies.splice(i, 1); 
-                        checkWaveClear();
+                        if (enemy.isBoss) { 
+                            let bossChunksLeft = shooterEnemies.filter(e => e.isBoss).length;
+                            if (bossChunksLeft === 0) { bossActive = false; triggerIntermission(); }
+                        } else checkWaveClear();
                     }
                 }
                 
-                let mins = (timestamp - waveStartTime) / 60000;
+                let mins = (performance.now() - waveStartTime) / 60000;
                 if (mins > 0.05 && waveKeystrokes > 0) document.getElementById('sh-kpm-text').innerText = Math.round((waveKeystrokes / 5) / mins);
             }
+
             shooterAnimReq = requestAnimationFrame(shooterLoop);
         }
 
@@ -485,39 +727,46 @@
         function destroyEnemy(enemy, isArmorBreak = false) {
             createExplosion(enemy.el);
             if (isArmorBreak) {
+                createFloatingScore(enemy.el, 20); 
                 enemy.hp--; enemy.typed = ''; enemy.untyped = enemy.text; enemy.el.classList.remove('armored');
                 updateEnemyDOM(enemy); enemy.el.style.backgroundColor = "rgba(59, 130, 246, 0.3)"; 
                 setTimeout(() => { if(enemy) enemy.el.style.backgroundColor = "var(--bg-main)"; }, 150);
             } else {
+                createFloatingScore(enemy.el, 50); 
                 enemy.el.remove(); shooterEnemies = shooterEnemies.filter(e => e !== enemy); 
                 if (activeTarget === enemy) activeTarget = null;
                 wordsDefeatedTotal++;
-                checkWaveClear();
+                
+                if (enemy.isBoss) { 
+                    let bossChunksLeft = shooterEnemies.filter(e => e.isBoss).length;
+                    if(bossChunksLeft === 0) { bossActive = false; triggerIntermission(); }
+                } else checkWaveClear();
             }
         }
 
         function processShooterChar(char) {
             waveKeystrokes++;
             if (activeTarget) {
-                // ABORT TARGET MECHANIC: Tekan Spasi untuk membatalkan target jika Spasi bukan bagian dari kata
+                // ABORT TARGET MECHANIC
                 if (char === ' ' && activeTarget.untyped[0] !== ' ') {
                     activeTarget.el.classList.remove('targeted'); activeTarget.typed = ''; activeTarget.untyped = activeTarget.text;
                     updateEnemyDOM(activeTarget); activeTarget = null; return;
                 }
 
                 if (activeTarget.untyped[0] === char) {
+                    addScore(10); 
                     activeTarget.typed += activeTarget.untyped[0]; activeTarget.untyped = activeTarget.untyped.substring(1); updateEnemyDOM(activeTarget);
                     if (activeTarget.untyped.length === 0) destroyEnemy(activeTarget, activeTarget.hp > 1);
-                } else { activeTarget.el.style.backgroundColor = "var(--extra-bg)"; setTimeout(() => { if(activeTarget) activeTarget.el.style.backgroundColor = "var(--bg-main)"; }, 100); }
+                } else { breakCombo(); activeTarget.el.style.backgroundColor = "var(--extra-bg)"; setTimeout(() => { if(activeTarget) activeTarget.el.style.backgroundColor = "var(--bg-main)"; }, 100); }
             } else {
-                // SMART TARGETING: Prioritaskan musuh yang posisinya paling bawah (Y terbesar)
                 let sortedEnemies = shooterEnemies.slice().sort((a, b) => b.y - a.y);
                 let target = sortedEnemies.find(w => w.untyped[0] === char);
                 
                 if (target) {
+                    addScore(10);
                     activeTarget = target; activeTarget.el.classList.add('targeted'); activeTarget.typed += activeTarget.untyped[0]; activeTarget.untyped = activeTarget.untyped.substring(1); updateEnemyDOM(activeTarget);
-                    if (activeTarget.untyped.length === 0) destroyEnemy(activeTarget, activeTarget.hp > 1);
-                }
+                    if (activeTarget.untyped.length === 0) destroyEnemy(target, target.hp > 1);
+                } else breakCombo(); 
             }
         }
 
@@ -534,7 +783,7 @@
         function triggerIntermission() {
             inIntermission = true; shooterEnemies.forEach(e => e.el.remove()); shooterEnemies = []; activeTarget = null;
             let fwk = recordWaveHistory();
-            if (shooterWave >= maxWaves) { saveBestWave(shooterWave); document.getElementById('victory-screen').classList.add('show'); return; }
+            if (shooterWave >= maxWaves) { saveBestWaveAndScore(shooterWave, score); document.getElementById('victory-screen').classList.add('show'); return; }
             
             const over = document.getElementById('intermission-screen');
             document.getElementById('int-title-text').innerText = `Wave ${shooterWave} Cleared!`;
@@ -551,20 +800,22 @@
                 isBossWave = true; 
                 bossWordsQueue = getShooterWords(true);
                 wordsToBeatForWave = bossWordsQueue.length;
-                spawnInterval = 300; // Cepat agar formasi baris boss segera terbentuk
+                spawnInterval = 300; 
             } else { 
                 isBossWave = false; 
                 wordsToBeatForWave = 10 + Math.floor(shooterWave * 1.5);
-                spawnInterval = Math.max(500, 2000 - (shooterWave * 60)); // Waktu spawn stabil
+                spawnInterval = Math.max(500, 2000 - (shooterWave * 60)); 
             }
             
-            inIntermission = false; startWaveTimer(); sInput.focus();
+            inIntermission = false; 
+            lastTimestamp = 0; // Clear system clock offset
+            startWaveTimer(); sInput.focus();
         }
 
         function endShooterGame() {
             shooterActive = false; cancelAnimationFrame(shooterAnimReq); sInput.disabled = true;
             document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
-            saveBestWave(shooterWave);
+            saveBestWaveAndScore(shooterWave, score);
             let tm = totalShooterTimeMs / 60000; let avg = tm > 0 ? Math.round((totalShooterKeystrokes / 5) / tm) : 0;
             
             if (shooterWave >= maxWaves && currentHealth > 0) { document.getElementById('stat-1').innerText = "VICTORY"; document.getElementById('stat-1').className = "text-yellow"; } 
@@ -576,7 +827,10 @@
             const hl = document.getElementById('wave-history-list'); hl.innerHTML = '';
             waveKpmHistory.forEach(h => { let d = document.createElement('div'); d.className = 'history-item'; d.innerHTML = `<span>Wave ${h.wave}</span><strong>${h.kpm} KPM</strong>`; hl.appendChild(d); });
 
-            document.getElementById('wpm').innerText = avg; document.getElementById('stat-total-letters').innerText = totalShooterKeystrokes; document.getElementById('stat-words').innerText = wordsDefeatedTotal;
+            document.getElementById('wpm').innerText = avg; 
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('stat-total-letters').innerText = totalShooterKeystrokes; 
+            document.getElementById('stat-words').innerText = wordsDefeatedTotal;
             document.getElementById('shooter-container').classList.add('hidden'); document.getElementById('result-container').classList.remove('hidden');
         }
     </script>
