@@ -1,22 +1,17 @@
-
 // ==========================================
 // FILE DATA REFERENSI TYPING MASTER PRO
-// Tambahkan atau edit kata/kalimat di dalam tanda kutip ("...")
-// Pastikan setiap kata/kalimat dipisahkan dengan tanda koma (,)
+// Pastikan tidak ada tag HTML (<script>) di file ini!
 // ==========================================
 
-// === KATA KASUAL SEHARI-HARI (MODE 1) ===
-const dailyWords = [
+var dailyWords = [
     "yang", "dan", "di", "ke", "dari", "ini", "itu", "untuk", "pada", "dengan", "adalah", "sebagai", "tidak", "bisa", "akan", "tapi", "karena", "kalau", "sudah", "lagi", "lebih", "sangat", "paling", "hanya", "juga", "atau", "saat", "lalu", "biar", "terus", "sambil", "memang", "cepat", "lambat", "baik", "buruk", "baru", "lama", "jauh", "dekat", "mudah", "susah", "banyak", "sedikit", "besar", "kecil", "bagus", "keren", "santai", "sibuk", "makan", "minum", "tidur", "pergi", "pulang", "jalan", "lari", "bikin", "buat", "pakai", "ambil", "kasih", "bawa", "cari", "dapat", "coba", "mulai", "selesai", "paham", "ngerti", "suka", "benci", "mau", "ingin", "jangan", "mari", "ayo", "tolong", "maaf", "terima", "sama", "beda", "benar", "salah", "mungkin", "pasti", "selalu", "kadang", "belum", "sekarang", "nanti", "besok", "kemarin", "hari", "malam", "pagi", "sore", "iya", "enggak", "oke", "sip", "dong", "deh", "nih", "tuh", "kan", "kok", "sih", "aja", "banget", "lumayan", "biasa", "luar", "dalam", "atas", "bawah", "depan", "kiri", "kanan", "sini", "situ", "sana", "mana", "apa", "siapa", "mengapa", "kenapa", "gimana", "kapan", "berapa"
 ];
 
-// === KOSAKATA BAKU UTBK & PUEBI (MODE 2) ===
-const utbkWords = [
+var utbkWords = [
     "andal", "antre", "asas", "autisme", "balsam", "batalion", "baterai", "bolpoin", "bujur", "cenderamata", "cengkeram", "detail", "diagnosis", "diperbarui", "ekstrem", "elite", "embus", "fondasi", "frekuensi", "genius", "gua", "gubuk", "haktul", "hafal", "hierarki", "higienis", "imbau", "indra", "isap", "istri", "jadwal", "jenazah", "jenderal", "kacamata", "karier", "kategori", "khatulistiwa", "khawatir", "kiai", "kualitas", "kuitansi", "legenda", "lembap", "lubang", "maaf", "makhluk", "manajemen", "mangkuk", "mantra", "massal", "memercayai", "memesona", "memopulerkan", "mengubah", "menyukseskan", "miliar", "misi", "mosaik", "napas", "narasumber", "nasihat", "objek", "omzet", "paham", "pascapanen", "peka", "pembaruan", "penasihat", "pertanggungjawaban", "piawai", "praktik", "provinsi", "putra", "ramai", "rapor", "relaksasi", "respons", "risiko", "roboh", "saksama", "samudra", "sanksi", "saraf", "sekadar", "sekretaris", "silakan", "sistem", "sportif", "standardisasi", "subjek", "survei", "sutradara", "tampak", "tauladan", "telantar", "terampil", "ubah", "utang", "wujud", "zaman", "zamrud", "kedaluwarsa", "mencolok", "memunafikkan", "apotek", "atlet", "bus", "berpikir", "cabai", "capai", "cedera", "cendekia", "cendekiawan", "cengkerama", "cengkih", "cinderamata", "cokelat", "elips", "emas", "empas", "gaib", "geiser", "gips", "grup", "gudeg", "insaf", "masjid", "tripleks"
 ];
 
-// === KALIMAT KTI: TEKNIK PERKAPALAN (MODE 3, 4, 5) ===
-const ktiPerkapalan = [
+var ktiPerkapalan = [
     "Penelitian ini mengkaji pengaruh modifikasi bentuk haluan terhadap nilai hambatan total kapal menggunakan metode Computational Fluid Dynamics pada berbagai variasi sarat air.",
     "Desain lines plan merupakan langkah paling krusial sebelum melanjutkan proses pemodelan lambung 3D di perangkat lunak Maxsurf.",
     "Perhitungan perubahan sarat haluan dan buritan akibat penambahan bobot muatan dianalisis secara akurat menggunakan prinsip keseimbangan hidrostatika dasar.",
@@ -43,8 +38,7 @@ const ktiPerkapalan = [
     "Kerusakan struktural berwujud retak mikro yang berujung pada patah lelah atau fatigue crack pada poros dan blade propeller di tengah laut."
 ];
 
-// === KALIMAT KTI: ILMU KOMUNIKASI & SINTAKSIS (MODE 3, 4, 5) ===
-const ktiKomunikasi = [
+var ktiKomunikasi = [
     "Penelitian ini menerapkan metode analisis wacana kritis guna membongkar konstruksi representasi gender dalam pemberitaan media massa daring.",
     "Efektivitas kampanye literasi digital diukur melalui perubahan tingkat kognisi dan perilaku bermedia sosial secara bijak pada kalangan remaja.",
     "Dinamika komunikasi kelompok dalam ruang diskusi virtual memengaruhi proses pengambilan keputusan secara kolektif di era disrupsi informasi.",
