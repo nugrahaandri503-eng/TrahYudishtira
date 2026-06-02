@@ -159,7 +159,7 @@
         <div class="btn-grid">
             <button class="menu-btn" onclick="openThemeSelection()">
                 <strong>⚔️ Mulai Pertarungan!</strong>
-                <span>Survival 20 Wave. Target ~90 KPM. Ganti target dengan [Spasi]. Tembok Boss Horizontal & Multiplier Bar!</span>
+                <span>Survival 20 Wave.Ganti target dengan [Spasi]. Tembok Boss Horizontal & Multiplier Bar!</span>
             </button>
             <button class="menu-btn switch-app-btn" onclick="window.location.href='index.html'">
                 📖 Pindah ke Mode Latihan Klasik
@@ -171,11 +171,11 @@
         <div class="menu-header"><h1>Pilih Kategori Teks</h1></div>
         <div class="btn-grid">
             <button class="menu-btn" onclick="startShooterGame('perkapalan')">
-                <strong>🚢 Teknik Perkapalan</strong>
+                <strong>🚢 SAINTEK</strong>
                 <span>Hidrostatika, CFD, dan mekanika fluida.</span>
             </button>
             <button class="menu-btn" onclick="startShooterGame('komunikasi')">
-                <strong>📝 Ilmu Komunikasi</strong>
+                <strong>📝 SOSHUM</strong>
                 <span>Kalimat efektif dan literasi digital.</span>
             </button>
             <button class="menu-btn" style="border-color:var(--gold-border); background:var(--gold-bg);" onclick="startShooterGame('campur')">
@@ -201,10 +201,13 @@
                 <div class="stat-box" style="border-color: var(--primary);">
                     <div class="stat-label" style="color: var(--primary);">SCORE</div>
                     <div id="sh-score-text" class="stat-val-score">0</div>
-                    <div class="multiplier-box" id="sh-multiplier">x1</div>
-                    <div class="mult-bar-wrapper">
-                        <div class="mult-bar-fill" id="mult-bar-fill"></div>
-                    </div>
+                   <div class="multiplier-box" id="sh-multiplier">x1</div>
+<div class="mult-bar-wrapper" style="margin-bottom: 4px;">
+    <div class="mult-bar-fill" id="mult-bar-fill"></div>
+</div>
+<div class="mult-bar-wrapper">
+    <div class="mult-bar-fill" id="combo-progress-fill" style="background: var(--gold-text); box-shadow: 0 0 8px var(--gold-text); width: 0%;"></div>
+</div>
                 </div>
                 <div id="health-box" style="width: 100%;">
                     <div class="stat-label" style="color: var(--extra); text-align: center;">INTEGRITAS (NYAWA)</div>
@@ -409,31 +412,40 @@
             document.getElementById('shooter-container').classList.remove('hidden'); resetShooterSetup();
         }
 
-        function updateScoreUI() {
-            document.getElementById('sh-score-text').innerText = score;
-            document.getElementById('sh-multiplier').innerText = `x${multiplier}`;
-            if (multiplier > 1) {
-                document.getElementById('sh-multiplier').style.color = (multiplier === 5) ? 'var(--extra)' : 'var(--gold-text)';
-            } else {
-                document.getElementById('sh-multiplier').style.color = 'var(--text-muted)';
-            }
-        }
+           function updateScoreUI() {
+    document.getElementById('sh-score-text').innerText = score;
+    document.getElementById('sh-multiplier').innerText = `x${multiplier}`;
+    if (multiplier > 1) {
+        document.getElementById('sh-multiplier').style.color = (multiplier === 5) ? 'var(--extra)' : 'var(--gold-text)';
+    } else {
+        document.getElementById('sh-multiplier').style.color = 'var(--text-muted)';
+    }
 
-        function breakCombo() {
-            comboCount = 0; multiplier = 1; multiplierTimer = 0; updateScoreUI();
-        }
+    // Hitung persentase bar progres menuju multiplier berikutnya (setiap kelipatan 15 combo)
+    let comboInCurrentTier = comboCount % 15;
+    let progressPct = (multiplier >= 5) ? 100 : (comboInCurrentTier / 15) * 100;
+    document.getElementById('combo-progress-fill').style.width = progressPct + '%';
+}
 
-        function addScore(points) {
-            score += (points * multiplier);
-            comboCount++;
-            multiplierTimer = 0; // Reset countdown bar
-            
-            if (comboCount >= 15 && multiplier < 2) multiplier = 2;
-            if (comboCount >= 30 && multiplier < 3) multiplier = 3;
-            if (comboCount >= 45 && multiplier < 4) multiplier = 4;
-            if (comboCount >= 60 && multiplier < 5) multiplier = 5;
-            updateScoreUI();
-        }
+     function breakCombo() {
+    comboCount = 0; 
+    multiplier = 1; 
+    multiplierTimer = 0; 
+    document.getElementById('combo-progress-fill').style.width = '0%';
+    updateScoreUI();
+}
+
+function addScore(points) {
+    score += (points * multiplier);
+    comboCount++;
+    multiplierTimer = 0; // Reset timer saat ngetik benar
+    
+    if (comboCount >= 15 && multiplier < 2) multiplier = 2;
+    if (comboCount >= 30 && multiplier < 3) multiplier = 3;
+    if (comboCount >= 45 && multiplier < 4) multiplier = 4;
+    if (comboCount >= 60 && multiplier < 5) multiplier = 5;
+    updateScoreUI();
+}
 
         function updateHealthUI() {
             let pct = Math.max(0, currentHealth);
@@ -567,6 +579,59 @@
             }
             wordsSpawnedInWave++;
         }
+		function spawnBossWall() {
+    // Makin tinggi wave, makin banyak baris dan peluang shield
+    let rowCount = 2 + Math.floor(shooterWave / 5); // W5 = 3 baris, W10 = 4 baris, dst.
+    let wordsPerRow = 8;
+    wordsToBeatForWave = rowCount * wordsPerRow;
+    wordsSpawnedInWave = wordsToBeatForWave; // Tandai semua sudah di-spawn
+
+    let zone = document.getElementById('shooter-zone');
+    let zoneW = zone.offsetWidth;
+    let colW = zoneW / wordsPerRow;
+    
+    // Peluang perisai meningkat seiring naiknya wave
+    let armorChance = 0.15 + (shooterWave * 0.02); 
+
+    for (let r = 0; r < rowCount; r++) {
+        for (let c = 0; c < wordsPerRow; c++) {
+            let el = document.createElement('div');
+            
+            // Ambil kata (menggunakan referensi kti atau utbk yang lebih sulit)
+            let wordText = getShooterWords(true)[0]; 
+            if (!wordText) wordText = "boss";
+
+            // Tentukan apakah kata ini punya pelindung
+            let isArmored = Math.random() < armorChance;
+            let hp = isArmored ? 2 : 1;
+            
+            el.className = 'falling-word boss';
+            if (isArmored) el.classList.add('armored');
+            
+            let htmlStr = `<span class="fw-typed"></span><span class="fw-untyped">${wordText}</span>`;
+            if (isArmored) htmlStr += `<span class="armor-badge">[2x]</span>`;
+            el.innerHTML = htmlStr;
+
+            zone.appendChild(el);
+
+            // Posisi X diatur rapi seperti kolom tabel
+            let x = (c * colW) + (colW / 2) - (el.offsetWidth / 2);
+            // Posisi Y disusun nempel ke atas tanpa jeda
+            let startY = -60 - (r * 60); 
+
+            el.style.left = x + 'px';
+            el.style.top = startY + 'px';
+            
+            // Kecepatan gerak diseragamkan agar turun seperti satu tembok utuh
+            let speed = 0.15 + (shooterWave * 0.008); 
+            
+            shooterEnemies.push({ 
+                el, text: wordText, typed: '', untyped: wordText, 
+                y: startY, speed: speed, isBoss: true, hp: hp 
+            });
+        }
+    }
+}
 
         // === THEMATIC FLOATING SCORE TEXT ===
         function createFloatingScore(el, basePoints) {
@@ -723,27 +788,39 @@
                 sInput.focus(); playTypingSound(); processShooterChar(e.key); 
             } 
         });
+function destroyEnemy(enemy, isArmorBreak = false) {
+    createExplosion(enemy.el);
+    
+    // Hitung poin sesuai panjang kata (1 huruf = 10 poin)
+    let wordScore = enemy.text.length * 10;
 
-        function destroyEnemy(enemy, isArmorBreak = false) {
-            createExplosion(enemy.el);
-            if (isArmorBreak) {
-                createFloatingScore(enemy.el, 20); 
-                enemy.hp--; enemy.typed = ''; enemy.untyped = enemy.text; enemy.el.classList.remove('armored');
-                updateEnemyDOM(enemy); enemy.el.style.backgroundColor = "rgba(59, 130, 246, 0.3)"; 
-                setTimeout(() => { if(enemy) enemy.el.style.backgroundColor = "var(--bg-main)"; }, 150);
-            } else {
-                createFloatingScore(enemy.el, 50); 
-                enemy.el.remove(); shooterEnemies = shooterEnemies.filter(e => e !== enemy); 
-                if (activeTarget === enemy) activeTarget = null;
-                wordsDefeatedTotal++;
-                
-                if (enemy.isBoss) { 
-                    let bossChunksLeft = shooterEnemies.filter(e => e.isBoss).length;
-                    if(bossChunksLeft === 0) { bossActive = false; triggerIntermission(); }
-                } else checkWaveClear();
-            }
-        }
-
+    if (isArmorBreak) {
+        // Bonus menghancurkan lapis pertama armor (misal kita set setengah dari skor kata)
+        let armorBonus = Math.floor(wordScore / 2); 
+        
+        createFloatingScore(enemy.el, armorBonus); 
+        score += (armorBonus * multiplier); 
+        updateScoreUI();            
+        
+        enemy.hp--; enemy.typed = ''; enemy.untyped = enemy.text; enemy.el.classList.remove('armored');
+        updateEnemyDOM(enemy); enemy.el.style.backgroundColor = "rgba(59, 130, 246, 0.3)"; 
+        setTimeout(() => { if(enemy) enemy.el.style.backgroundColor = "var(--bg-main)"; }, 150);
+    } else {
+        // Bonus menghancurkan kata sepenuhnya (sesuai jumlah huruf)
+        createFloatingScore(enemy.el, wordScore); 
+        score += (wordScore * multiplier); 
+        updateScoreUI();            
+        
+        enemy.el.remove(); shooterEnemies = shooterEnemies.filter(e => e !== enemy); 
+        if (activeTarget === enemy) activeTarget = null;
+        wordsDefeatedTotal++;
+        
+        if (enemy.isBoss) { 
+            let bossChunksLeft = shooterEnemies.filter(e => e.isBoss).length;
+            if(bossChunksLeft === 0) { bossActive = false; triggerIntermission(); }
+        } else checkWaveClear();
+    }
+}
         function processShooterChar(char) {
             waveKeystrokes++;
             if (activeTarget) {
@@ -792,26 +869,24 @@
             let iv = setInterval(() => { cd--; if (cd > 0) document.getElementById('int-countdown-text').innerText = cd; else { clearInterval(iv); over.classList.remove('show'); advanceToNextWave(); } }, 1000);
         }
 
-        function advanceToNextWave() {
-            shooterWave++; document.getElementById('sh-wave-text').innerHTML = `${shooterWave}<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span>`;
-            wordsSpawnedInWave = 0;
-            
-            if (shooterWave % 5 === 0) { 
-                isBossWave = true; 
-                bossWordsQueue = getShooterWords(true);
-                wordsToBeatForWave = bossWordsQueue.length;
-                spawnInterval = 300; 
-            } else { 
-                isBossWave = false; 
-                wordsToBeatForWave = 10 + Math.floor(shooterWave * 1.5);
-                spawnInterval = Math.max(500, 2000 - (shooterWave * 60)); 
-            }
-            
-            inIntermission = false; 
-            lastTimestamp = 0; // Clear system clock offset
-            startWaveTimer(); sInput.focus();
-        }
-
+     function advanceToNextWave() {
+    shooterWave++; 
+    document.getElementById('sh-wave-text').innerHTML = `${shooterWave}<span style="font-size: 1.2rem; color:var(--text-muted)">/20</span>`;
+    wordsSpawnedInWave = 0;
+    
+    if (shooterWave % 5 === 0) { 
+        isBossWave = true; 
+        spawnBossWall(); // Generate tembok utuh secara instan!
+    } else { 
+        isBossWave = false; 
+        wordsToBeatForWave = 10 + Math.floor(shooterWave * 1.5);
+        spawnInterval = Math.max(500, 2000 - (shooterWave * 60)); 
+    }
+    
+    inIntermission = false; 
+    lastTimestamp = 0; 
+    startWaveTimer(); sInput.focus();
+}
         function endShooterGame() {
             shooterActive = false; cancelAnimationFrame(shooterAnimReq); sInput.disabled = true;
             document.getElementById('intermission-screen').classList.remove('show'); document.getElementById('victory-screen').classList.remove('show');
